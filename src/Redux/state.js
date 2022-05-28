@@ -60,17 +60,16 @@ let state = {
 export const subscribe = (observer) => {
   reRenderEntireTree = observer;
 }
-export let addPost = (postMessage) => {
+export let addPost = () => {
   let newPost = {
-    title: postMessage.title,
-    category: postMessage.category,
-    text: postMessage.text
+    title: state.blogPage.newValue.newPostTitle,
+    category: state.blogPage.newValue.newPostCategory,
+    text: state.blogPage.newValue.newPostText
   }
   state.posts.push(newPost)
-  state.newPost = '';
   reRenderEntireTree(state);
 }
-export let updateNewPostText = (newText = '') => {
+export let updateNewPostText = (newText) => {
   let newPostText = {
     title: newText.title,
     category: newText.category,

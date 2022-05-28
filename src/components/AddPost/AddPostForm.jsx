@@ -7,13 +7,8 @@ const AddPostForm = (props) => {
   let newTextElement = React.createRef();
 
   let addPost = () => {
-    let post = {
-      title: newTitleElement.current.value,
-      category: newCategoryElement.current.value,
-      text: newTextElement.current.value
-    }
-    props.addPost(post);
-    props.updateNewPostText();
+    props.addPost();
+    props.updateNewPostText('');
   }
 
   let onPostCange = () => {
