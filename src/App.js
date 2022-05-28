@@ -8,7 +8,6 @@ const App = () => {
     <div className="App">
       <Header />
       <Profile />
-      <Header />
     </div>
   );
 }
