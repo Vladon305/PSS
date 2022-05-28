@@ -7,13 +7,18 @@ import Profile from './components/Profile/Profile';
 import Works from './components/Works/Works';
 
 const App = (props) => {
+
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path='/' element={<Profile state={props.state.profilePage} />} />
-        <Route path='/Works' element={<Works state={props.state.worksPage} />} />
-        <Route path='/Blog' element={<Blog state={props.state.blogPage} />} />
+        <Route path='/' element={<Profile state={props.state} />} />
+        <Route path='/Works' element={<Works works={props.state.works} />} />
+        <Route path='/Blog' element={<Blog
+          posts={props.state.posts}
+          newValue={props.state.blogPage}
+          addPost={props.addPost}
+          updateNewPostText={props.updateNewPostText} />} />
       </Routes>
       <Footer />
     </div>
