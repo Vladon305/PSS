@@ -1,3 +1,9 @@
+.Works {
+  padding-bottom: 30px;
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
 .works {
   display: flex;
   flex-direction: column;

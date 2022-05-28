@@ -1,30 +1,29 @@
 import React from 'react';
-import style from './Header.module.css';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <div className={style.wrapper}>
-      <header className={style.header}>
-        <div className={style.conteiner}>
-          <div className={style.header__content}>
-            <div className={style.header__menu}>
-              <div className={style.menu__icon}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <nav className={style.menu__body}>
-                <ul className={style.menu__list}>
-                  <li><a href="index.html" className={style.menu__link}>Page</a></li>
-                  <li><a href="works.html" className={style.menu__link}>works</a></li>
-                  <li><a href="blog.html" className={style.menu__link}>Blog</a></li>
-                </ul>
-              </nav>
+    <header className="header">
+      <div className="conteiner">
+        <div className="header__content">
+          <div className="header__menu menu">
+            <div className="menu__icon icon-menu">
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
+            <nav className="menu__body">
+              <ul className="menu__list">
+                <li><NavLink to="/" className="menu__link">Page</NavLink></li>
+                <li><NavLink to="/Works" className="menu__link">Works</NavLink></li>
+                <li><NavLink to="/Blog" className="menu__link">Blog</NavLink></li>
+              </ul>
+            </nav>
           </div>
         </div>
-      </header >
-    </div >
+      </div>
+    </header>
+
   );
 }
 
