@@ -16,7 +16,7 @@ const Header = () => {
               <nav className={style.menu__body}>
                 <ul className={style.menu__list}>
                   <li><a href="index.html" className={style.menu__link}>Page</a></li>
-                  <li><a href="works.html" className={style.menu__link}>Works</a></li>
+                  <li><a href="works.html" className={style.menu__link}>works</a></li>
                   <li><a href="blog.html" className={style.menu__link}>Blog</a></li>
                 </ul>
               </nav>
