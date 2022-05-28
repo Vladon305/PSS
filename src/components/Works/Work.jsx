@@ -1,19 +1,18 @@
 import React from 'react';
 
-const Work = () => {
+const Work = (props) => {
   return (
     <article className="works__item">
       <a href="#" className="works__image _ibg">
         <img src="img/work01.png" alt="work 01" />
       </a>
       <div className="works__body">
-        <a className="works__title">Designing Dashboards</a>
+        <a className="works__title">{props.title}</a>
         <div className="works__info">
-          <div className="works__yaer">2020</div>
-          <div className="works__category">Dashboard</div>
+          <div className="works__yaer">{props.data}</div>
+          <div className="works__category">{props.category}</div>
         </div>
-        <div className="works__text text">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-          Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</div>
+        <div className="works__text text">{props.text}</div>
       </div>
     </article>
   );

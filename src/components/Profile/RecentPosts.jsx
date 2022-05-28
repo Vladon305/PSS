@@ -1,7 +1,20 @@
 import React from 'react';
 import Post from '../Blog/Post';
 
-const RecentPosts = () => {
+const RecentPosts = (props) => {
+
+  function returnLastItem(arr) {
+    return [arr[arr.length - 1]];
+  }
+  function returnPreLastItem(arr) {
+    return [arr[arr.length - 2]];
+  }
+  let lastElement = returnLastItem(props.posts);
+  let preLastElement = returnPreLastItem(props.posts);
+  let postElement1 = lastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} />);
+  let postElement2 = preLastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} />);
+
+
   return (
     <div className='RecentPosts'>
       <section className="recent-posts">
@@ -12,10 +25,10 @@ const RecentPosts = () => {
           </div>
           <div className="recent-posts__items">
             <div className="recent-posts__column">
-              <Post />
+              {postElement1}
             </div>
             <div className="recent-posts__column">
-              <Post />
+              {postElement2}
             </div>
           </div>
         </div>
