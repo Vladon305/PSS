@@ -1,4 +1,5 @@
 import React from 'react';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../Redux/state';
 
 const AddPostForm = (props) => {
 
@@ -7,17 +8,16 @@ const AddPostForm = (props) => {
   let newTextElement = React.createRef();
 
   let addPost = () => {
-    props.addPost();
-    props.updateNewPostText('');
+    props.dispatch(addPostActionCreator());
   }
 
   let onPostCange = () => {
-    let value = {
-      title: newTitleElement.current.value,
-      category: newCategoryElement.current.value,
-      text: newTextElement.current.value
-    }
-    props.updateNewPostText(value);
+
+    let title = newTitleElement.current.value;
+    let category = newCategoryElement.current.value;
+    let text = newTextElement.current.value;
+
+    props.dispatch(updateNewPostTextActionCreator(title, category, text));
   }
 
   return (

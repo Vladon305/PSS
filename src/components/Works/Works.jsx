@@ -2,7 +2,7 @@ import React from 'react';
 import Work from './Work';
 
 const Works = (props) => {
-  let workElements = props.state.works
+  let workElements = props.works
     .map(w => <Work title={w.title} data={w.data} category={w.category} text={w.text} />);
 
   return (

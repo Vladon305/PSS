@@ -1,82 +1,100 @@
-let reRenderEntireTree = () => {
-  console.log('no');
-}
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-let state = {
-  works: [{
-    title: 'Designing Dashboards',
-    data: '2020',
-    category: 'Dashboard',
-    text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+
+let store = {
+  _callSubscriber() {
+    console.log('no');
   },
-  {
-    title: 'Vibrant Portraits of 2020',
-    data: '2018',
-    category: 'Illustration',
-    text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+  _state: {
+    works: [{
+      title: 'Designing Dashboards',
+      data: '2020',
+      category: 'Dashboard',
+      text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+    },
+    {
+      title: 'Vibrant Portraits of 2020',
+      data: '2018',
+      category: 'Illustration',
+      text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+    },
+    {
+      title: '36 Days of Malayalam type',
+      data: '2018',
+      category: 'Typography',
+      text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+    }, {
+      title: 'Designing Dashboards',
+      data: '2020',
+      category: 'Dashboard',
+      text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+    }],
+    posts: [{
+      title: 'UI Interactions of the week',
+      data: '12 Feb 2019 ',
+      category: 'Express, Handlebars',
+      text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
+    },
+    {
+      title: 'Making a design system from scratch',
+      data: '12 Feb 2020 ',
+      category: 'Design, Pattern',
+      text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
+    },
+    {
+      title: 'Creating pixel perfect icons in Figma',
+      data: '12 Feb 2020 ',
+      category: 'Figma, Icon Design',
+      text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
+    }],
+    profilePage: {
+    },
+    worksPage: {
+    },
+    blogPage: {
+      newValue: {
+        newPostTitle: 'Add title',
+        newPostCategory: 'Add category',
+        newPostText: 'Add text'
+      }
+    },
+    dialogsPage: {
+      dialogs: [{
+
+      }],
+      massages: [{
+
+      }]
+    },
   },
-  {
-    title: '36 Days of Malayalam type',
-    data: '2018',
-    category: 'Typography',
-    text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
-  }, {
-    title: 'Designing Dashboards',
-    data: '2020',
-    category: 'Dashboard',
-    text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
-  }],
-  posts: [{
-    title: 'UI Interactions of the week',
-    data: '12 Feb 2019 ',
-    category: 'Express, Handlebars',
-    text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
+  getState() {
+    return this._state;
   },
-  {
-    title: 'Making a design system from scratch',
-    data: '12 Feb 2020 ',
-    category: 'Design, Pattern',
-    text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
-  {
-    title: 'Creating pixel perfect icons in Figma',
-    data: '12 Feb 2020 ',
-    category: 'Figma, Icon Design',
-    text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
-  }],
-  profilePage: {
-  },
-  worksPage: {
-  },
-  blogPage: {
-    newValue: {
-      newPostTitle: 'Add title',
-      newPostCategory: 'Add category',
-      newPostText: 'Add text'
+  dispatch(action) {
+    if (action.type === 'ADD-POST') {
+      let newPost = {
+        title: this._state.blogPage.newValue.newPostTitle,
+        category: this._state.blogPage.newValue.newPostCategory,
+        text: this._state.blogPage.newValue.newPostText
+      }
+      this._state.posts.push(newPost)
+      this._callSubscriber(this._state);
+    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+      this._state.blogPage.newValue.newPostTitle = action.newTitle;
+      this._state.blogPage.newValue.newPostCategory = action.newCategory;
+      this._state.blogPage.newValue.newPostText = action.newText;
+
+      this._callSubscriber(this._state);
     }
-  }
+  },
 }
 
-export const subscribe = (observer) => {
-  reRenderEntireTree = observer;
-}
-export let addPost = () => {
-  let newPost = {
-    title: state.blogPage.newValue.newPostTitle,
-    category: state.blogPage.newValue.newPostCategory,
-    text: state.blogPage.newValue.newPostText
-  }
-  state.posts.push(newPost)
-  reRenderEntireTree(state);
-}
-export let updateNewPostText = (newText) => {
-  let newPostText = {
-    title: newText.title,
-    category: newText.category,
-    text: newText.text
-  }
-  state.blogPage.newValue = newPostText;
-  reRenderEntireTree(state);
-}
+export const addPostActionCreator = () => ({ type: ADD_POST });
+export const updateNewPostTextActionCreator = (title, category, text) =>
+  ({ type: UPDATE_NEW_POST_TEXT, newTitle: title, newCategory: category, newText: text })
 
-export default state;
+export default store;

@@ -12,9 +12,8 @@ const Blog = (props) => {
           <div className="conteiner">
             <h1 className="blog__title title">Blog</h1>
             <AddPostForm
-              addPost={props.addPost}
-              newValue={props.newValue.newValue}
-              updateNewPostText={props.updateNewPostText} />
+              dispatch={props.dispatch}
+              newValue={props.newValue} />
             <div className="blog__items">
               {postElement}
             </div>
