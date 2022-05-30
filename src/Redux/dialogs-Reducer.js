@@ -1,7 +1,25 @@
 const UPDATE_NEW_MASSAGE_BODY = 'UPDATE-NEW-MASSAGE-BODY';
 const SEND_MASSAGE = 'SEND_MASSAGE';
 
-const dialogsReducer = (state, action) => {
+let initialState = {
+  dialogs: [
+    { id: 1, name: 'Dima' },
+    { id: 2, name: 'Dima' },
+    { id: 3, name: 'Dima' },
+    { id: 4, name: 'Dima' },
+    { id: 5, name: 'Dima' },
+  ],
+  massages: [
+    { id: 1, massage: 'hi' },
+    { id: 2, massage: 'yes' },
+    { id: 3, massage: 'What do you say?' },
+    { id: 4, massage: 'hi' },
+    { id: 5, massage: 'hi' },
+  ],
+  newMassageBody: ''
+};
+
+const dialogsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case UPDATE_NEW_MASSAGE_BODY:
