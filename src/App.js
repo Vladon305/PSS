@@ -12,16 +12,21 @@ const App = (props) => {
   return (
     <div className="App">
       <Header />
-      <Routes>
-        <Route path='/' element={<Profile state={props.state} />} />
-        <Route path='/Works' element={<Works works={props.state.works} />} />
-        <Route path='/Blog' element={
-          <Blog
-            posts={props.state.posts}
-            newValue={props.state.blogPage.newValue}
-            dispatch={props.dispatch} />} />
-        <Route path='/Dialogs' element={<Dialogs state={props.state.dialogsPage} />} />
-      </Routes>
+      <div className='wrapper'>
+        <Routes>
+          <Route path='/' element={<Profile state={props.state} />} />
+          <Route path='/Works' element={<Works works={props.state.works} />} />
+          <Route path='/Blog' element={
+            <Blog
+              posts={props.state.posts}
+              newValue={props.state.blogPage.newValue}
+              dispatch={props.dispatch} />} />
+          <Route path='/Dialogs' element={
+            <Dialogs
+              state={props.state.dialogsPage}
+              dispatch={props.dispatch} />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );

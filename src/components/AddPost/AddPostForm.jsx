@@ -1,5 +1,5 @@
 import React from 'react';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../Redux/state';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../Redux/blog-Reducer';
 
 const AddPostForm = (props) => {
 
@@ -19,7 +19,6 @@ const AddPostForm = (props) => {
 
     props.dispatch(updateNewPostTextActionCreator(title, category, text));
   }
-
   return (
     <div className='AddPostForm'>
       <textarea ref={newTitleElement} onChange={onPostCange} value={props.newValue.newPostTitle} />
