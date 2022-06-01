@@ -1,7 +1,7 @@
 import React from 'react';
 import Work from '../Works/Work';
 import AboutUser from './AboutUser';
-import RecentPosts from './RecentPosts';
+import RecentPostsConteiner from './RecentPostsConteiner';
 
 const Profile = (props) => {
 
@@ -13,7 +13,7 @@ const Profile = (props) => {
       <div className='wrapper'>
         <main className="page">
           <AboutUser />
-          <RecentPosts posts={props.state.posts.posts} />
+          <RecentPostsConteiner />
           <section className="featured-works">
             <div className="conteiner">
               <div className="featured-works__title title-posts">Featured works</div>
@@ -27,4 +27,5 @@ const Profile = (props) => {
     </div >
   );
 }
+
 export default Profile;
