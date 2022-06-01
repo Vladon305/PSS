@@ -13,7 +13,7 @@ const Profile = (props) => {
       <div className='wrapper'>
         <main className="page">
           <AboutUser />
-          <RecentPosts posts={props.state.posts} />
+          <RecentPosts posts={props.state.posts.posts} />
           <section className="featured-works">
             <div className="conteiner">
               <div className="featured-works__title title-posts">Featured works</div>

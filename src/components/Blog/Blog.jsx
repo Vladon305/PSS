@@ -3,7 +3,6 @@ import AddPostForm from '../AddPost/AddPostForm';
 import Post from './Post';
 
 const Blog = (props) => {
-
   let postElement = props.posts.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} />)
   return (
     <div className='Blog'>

@@ -8,7 +8,6 @@ import Profile from './components/Profile/Profile';
 import Works from './components/Works/Works';
 
 const App = (props) => {
-
   return (
     <div className="App">
       <Header />
@@ -18,8 +17,8 @@ const App = (props) => {
           <Route path='/Works' element={<Works works={props.state.works} />} />
           <Route path='/Blog' element={
             <Blog
-              posts={props.state.posts}
-              newValue={props.state.blogPage.newValue}
+              posts={props.state.posts.posts}
+              newValue={props.state.posts.newValue}
               dispatch={props.dispatch} />} />
           <Route path='/Dialogs' element={
             <Dialogs
