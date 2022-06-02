@@ -1,5 +1,4 @@
 import React from 'react';
-import { sendMassageCreator, updateNewMassageBodyCreator } from '../../Redux/dialogs-Reducer';
 import DialogsItem from './DialogItem';
 import Massage from './Massage';
 
@@ -9,12 +8,12 @@ const Dialogs = (props) => {
   let massagesElement = props.state.massages.map(m => <Massage massage={m.massage} />)
 
   let onSendMassageClick = () => {
-    props.dispatch(sendMassageCreator());
+    props.sendMassage();
   }
 
-  let onNewMassaeChange = (e) => {
+  let onNewMassageChange = (e) => {
     let body = e.target.value;
-    props.dispatch(updateNewMassageBodyCreator(body))
+    props.updateNewMassageBody(body)
   }
   return (
     <div className="conteiner">
@@ -24,7 +23,7 @@ const Dialogs = (props) => {
         </div>
         <div className='massages'>
           {massagesElement}
-          <div><textarea placeholder='Enter your massage' value={props.state.newMassageBody} onChange={onNewMassaeChange}></textarea></div>
+          <div><textarea placeholder='Enter your massage' value={props.state.newMassageBody} onChange={onNewMassageChange}></textarea></div>
           <div><button onClick={onSendMassageClick}>Send</button></div>
         </div>
       </div>

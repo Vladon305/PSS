@@ -1,5 +1,5 @@
 import React from 'react';
-import AddPostForm from '../AddPost/AddPostForm';
+import AddPostFormConteiner from '../AddPost/AddPostFormConteiner';
 import Post from './Post';
 
 const Blog = (props) => {
@@ -10,9 +10,7 @@ const Blog = (props) => {
         <main className="page">
           <div className="conteiner">
             <h1 className="blog__title title">Blog</h1>
-            <AddPostForm
-              dispatch={props.dispatch}
-              newValue={props.newValue} />
+            <AddPostFormConteiner />
             <div className="blog__items">
               {postElement}
             </div>

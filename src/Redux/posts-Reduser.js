@@ -41,16 +41,26 @@ const postsReducer = (state = initialState, action) => {
         category: state.newValue.newPostCategory,
         text: state.newValue.newPostText
       }
-      state.newValue.newPostTitle = '';
-      state.newValue.newPostCategory = '';
-      state.newValue.newPostText = '';
-      state.posts.push(newPost);
-      return state;
+      return {
+        ...state,
+        newValue: {
+          ...state.newValue,
+          newPostTitle: '',
+          newPostCategory: '',
+          newPostText: ''
+        },
+        posts: [...state.posts, { ...newPost }]
+      }
     case UPDATE_NEW_POST_TEXT:
-      state.newValue.newPostTitle = action.newTitle;
-      state.newValue.newPostCategory = action.newCategory;
-      state.newValue.newPostText = action.newText;
-      return state;
+      return {
+        ...state,
+        newValue: {
+          ...state.newValue,
+          newPostTitle: action.newTitle,
+          newPostCategory: action.newCategory,
+          newPostText: action.newText
+        }
+      }
 
     default:
       return state;

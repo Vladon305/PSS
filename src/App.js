@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Blog from './components/Blog/Blog';
-import Dialogs from './components/Dialogs/Dialogs';
+import BlogConteiner from './components/Blog/BlogConteiner';
+import DialogsConteiner from './components/Dialogs/DialogsConteiner';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
@@ -15,15 +15,8 @@ const App = (props) => {
         <Routes>
           <Route path='/' element={<Profile state={props.state} />} />
           <Route path='/Works' element={<Works works={props.state.works} />} />
-          <Route path='/Blog' element={
-            <Blog
-              posts={props.state.posts.posts}
-              newValue={props.state.posts.newValue}
-              dispatch={props.dispatch} />} />
-          <Route path='/Dialogs' element={
-            <Dialogs
-              state={props.state.dialogsPage}
-              dispatch={props.dispatch} />} />
+          <Route path='/Blog' element={<BlogConteiner />} />
+          <Route path='/Dialogs' element={<DialogsConteiner />} />
         </Routes>
       </div>
       <Footer />
