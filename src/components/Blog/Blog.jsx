@@ -3,7 +3,7 @@ import AddPostFormConteiner from '../AddPost/AddPostFormConteiner';
 import Post from './Post';
 
 const Blog = (props) => {
-  let postElement = props.posts.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} />)
+  let postElement = props.posts.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} key={p.id} />)
   return (
     <div className='Blog'>
       <div className="wrapper">

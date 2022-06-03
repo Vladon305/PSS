@@ -6,7 +6,7 @@ import RecentPostsConteiner from './RecentPostsConteiner';
 const Profile = (props) => {
 
   let workElements = props.state.works
-    .map(w => <Work title={w.title} data={w.data} category={w.category} text={w.text} />);
+    .map(w => <Work title={w.title} data={w.data} category={w.category} text={w.text} key={w.id} />);
 
   return (
     <div className='Profile'>

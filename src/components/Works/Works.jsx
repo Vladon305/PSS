@@ -3,7 +3,7 @@ import Work from './Work';
 
 const Works = (props) => {
   let workElements = props.works
-    .map(w => <Work title={w.title} data={w.data} category={w.category} text={w.text} />);
+    .map(w => <Work title={w.title} data={w.data} category={w.category} text={w.text} key={w.id} />);
 
   return (
     <div className='works'>

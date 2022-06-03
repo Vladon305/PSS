@@ -4,8 +4,8 @@ import Massage from './Massage';
 
 const Dialogs = (props) => {
 
-  let dialogsElement = props.state.dialogs.map(d => <DialogsItem name={d.name} id={d.id} />)
-  let massagesElement = props.state.massages.map(m => <Massage massage={m.massage} />)
+  let dialogsElement = props.state.dialogs.map(d => <DialogsItem name={d.name} id={d.id} key={d.id} />)
+  let massagesElement = props.state.massages.map(m => <Massage massage={m.massage} key={m.id} />)
 
   let onSendMassageClick = () => {
     props.sendMassage();

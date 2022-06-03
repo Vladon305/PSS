@@ -24,7 +24,6 @@ let initialState = {
     text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
   }],
   newValue: {
-    id: 1,
     newPostTitle: 'Add title',
     newPostCategory: 'Add category',
     newPostText: 'Add text'
@@ -35,9 +34,17 @@ const postsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case ADD_POST:
+      let date = new Date();
+      let output = String(date.getDate()).padStart(2, '0') + ' ' + String(date.getMonth()).padStart(2, '0') + ' ' + date.getFullYear();
+      let getLastId = () => {
+        let Posts = state.posts;
+        let lastPost = Posts[Posts.length - 1];
+        return lastPost.id++
+      };
       let newPost = {
-        id: 6,
+        id: getLastId(),
         title: state.newValue.newPostTitle,
+        data: output,
         category: state.newValue.newPostCategory,
         text: state.newValue.newPostText
       }

@@ -11,8 +11,8 @@ const RecentPosts = (props) => {
   }
   let lastElement = returnLastItem(props.posts);
   let preLastElement = returnPreLastItem(props.posts);
-  let postElement1 = lastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} />);
-  let postElement2 = preLastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} />);
+  let postElement1 = lastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} key={p.id} />);
+  let postElement2 = preLastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} key={p.id} />);
 
 
   return (
