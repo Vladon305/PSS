@@ -10,8 +10,8 @@ const Profile = (props) => {
 
   return (
     <div className='Profile'>
-      <div className='wrapper'>
-        <main className="page">
+      <main className="page">
+        <div className="conteiner">
           <AboutUser />
           <RecentPostsConteiner />
           <section className="featured-works">
@@ -22,9 +22,9 @@ const Profile = (props) => {
               </div>
             </div>
           </section>
-        </main>
-      </div>
-    </div >
+        </div>
+      </main>
+    </div>
   );
 }
 

@@ -16,24 +16,22 @@ const RecentPosts = (props) => {
 
 
   return (
-    <div className='RecentPosts'>
-      <section className="recent-posts">
-        <div className=" conteiner">
-          <div className="recent-posts__header">
-            <div className="recent-posts__title title-posts"> Recent posts</div>
-            <a className="recent-posts__view-all">View all</a>
+    <section className="recent-posts">
+      <div className=" conteiner">
+        <div className="recent-posts__header">
+          <div className="recent-posts__title title-posts"> Recent posts</div>
+          <a className="recent-posts__view-all">View all</a>
+        </div>
+        <div className="recent-posts__items">
+          <div className="recent-posts__column">
+            {postElement1}
           </div>
-          <div className="recent-posts__items">
-            <div className="recent-posts__column">
-              {postElement1}
-            </div>
-            <div className="recent-posts__column">
-              {postElement2}
-            </div>
+          <div className="recent-posts__column">
+            {postElement2}
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
 export default RecentPosts;

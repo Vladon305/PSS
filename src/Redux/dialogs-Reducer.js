@@ -29,10 +29,15 @@ const dialogsReducer = (state = initialState, action) => {
       }
 
     case SEND_MASSAGE:
+      let getNewId = () => {
+        let massages = state.massages;
+        let lastMassage = massages[massages.length - 1];
+        return lastMassage.id + 1
+      };
       let body = state.newMassageBody;
       return {
         ...state,
-        massages: [...state.massages, { id: 6, massage: body }],
+        massages: [...state.massages, { id: getNewId(), massage: body }],
         newMassageBody: ''
       }
 

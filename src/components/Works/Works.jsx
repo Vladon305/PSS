@@ -7,15 +7,13 @@ const Works = (props) => {
 
   return (
     <div className='works'>
-      <div className='wrapper'>
-        <main className="page">
-          <div className="conteiner">
-            <h1 className="works__main-title title">Works</h1>
-            {workElements}
-          </div>
-        </main>
-      </div>
-    </div >
+      <main className="page">
+        <div className="conteiner">
+          <h1 className="works__main-title title">Works</h1>
+          {workElements}
+        </div>
+      </main>
+    </div>
   );
 }
 export default Works;

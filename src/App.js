@@ -5,6 +5,7 @@ import DialogsConteiner from './components/Dialogs/DialogsConteiner';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
+import SideBarConteiner from './components/SideBar/SideBarConteiner';
 import Works from './components/Works/Works';
 
 const App = (props) => {
@@ -12,6 +13,7 @@ const App = (props) => {
     <div className="App">
       <Header />
       <div className='wrapper'>
+        <SideBarConteiner />
         <Routes>
           <Route path='/' element={<Profile state={props.state} />} />
           <Route path='/Works' element={<Works works={props.state.works} />} />

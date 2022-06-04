@@ -36,13 +36,13 @@ const postsReducer = (state = initialState, action) => {
     case ADD_POST:
       let date = new Date();
       let output = String(date.getDate()).padStart(2, '0') + ' ' + String(date.getMonth()).padStart(2, '0') + ' ' + date.getFullYear();
-      let getLastId = () => {
-        let Posts = state.posts;
-        let lastPost = Posts[Posts.length - 1];
-        return lastPost.id++
+      let getNewId = () => {
+        let posts = state.posts;
+        let lastPost = posts[posts.length - 1];
+        return lastPost.id + 1
       };
       let newPost = {
-        id: getLastId(),
+        id: getNewId(),
         title: state.newValue.newPostTitle,
         data: output,
         category: state.newValue.newPostCategory,

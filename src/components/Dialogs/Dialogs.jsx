@@ -16,15 +16,17 @@ const Dialogs = (props) => {
     props.updateNewMassageBody(body)
   }
   return (
-    <div className="conteiner">
-      <div className='dialogs'>
-        <div className='dialogsItems'>
-          {dialogsElement}
-        </div>
-        <div className='massages'>
-          {massagesElement}
-          <div><textarea placeholder='Enter your massage' value={props.state.newMassageBody} onChange={onNewMassageChange}></textarea></div>
-          <div><button onClick={onSendMassageClick}>Send</button></div>
+    <div className="Diadlogs">
+      <div className="conteiner">
+        <div className='dialogs'>
+          <div className='dialogsItems'>
+            {dialogsElement}
+          </div>
+          <div className='massages'>
+            {massagesElement}
+            <div><textarea placeholder='Enter your massage' value={props.state.newMassageBody} onChange={onNewMassageChange}></textarea></div>
+            <div><button onClick={onSendMassageClick}>Send</button></div>
+          </div>
         </div>
       </div>
     </div>
