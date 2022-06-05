@@ -13,13 +13,15 @@ const App = (props) => {
     <div className="App">
       <Header />
       <div className='wrapper'>
-        <SideBarConteiner />
-        <Routes>
-          <Route path='/' element={<Profile state={props.state} />} />
-          <Route path='/Works' element={<Works works={props.state.works} />} />
-          <Route path='/Blog' element={<BlogConteiner />} />
-          <Route path='/Dialogs' element={<DialogsConteiner />} />
-        </Routes>
+        <div className='between'>
+          <SideBarConteiner />
+          <Routes>
+            <Route path='/' element={<Profile state={props.state} />} />
+            <Route path='/Works' element={<Works works={props.state.works} />} />
+            <Route path='/Blog' element={<BlogConteiner />} />
+            <Route path='/Dialogs' element={<DialogsConteiner />} />
+          </Routes>
+        </div>
       </div>
       <Footer />
     </div>

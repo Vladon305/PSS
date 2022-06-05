@@ -7,11 +7,6 @@ const Header = () => {
       <div className="conteiner">
         <div className="header__content">
           <div className="header__menu menu">
-            <div className="menu__icon icon-menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
             <nav className="menu__body">
               <ul className="menu__list">
                 <li><NavLink to="/" className="menu__link">Page</NavLink></li>
