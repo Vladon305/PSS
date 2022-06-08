@@ -1,0 +1,20 @@
+.btn {
+  background: #ff6464;
+  border-radius: 2px;
+  height: 47px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29 / 20 * 100%;
+  color: #fff;
+  display: inline-flex;
+  padding: 0px 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.3s ease 0s;
+  @media (min-width: 992px) {
+    &:hover {
+      background: #f84747;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import "nullstyle.scss";
+@import url("https://fonts.googleapis.com/css?family=Heebo:regular,500,700,900&display=swap");
+
+//Шрифт по умолчанию
+$fontFamily: "Heebo";
+
+//Переменные
+$minWidth: 320px;
+$maxWidth: 1152px;
+$maxWidthContainer: 856px;
+$md1: $maxWidthContainer + 12px;
+$md2: 991.98px;
+$md3: 767.98px;
+$md4: 479.98px;
+
+//Общие параметры
+body {
+  font-family: $fontFamily;
+  color: #21243d;
+  font-size: 14px;
+}
+
+.page {
+  padding: 90px 10px 0px;
+  flex: 1 1 auto;
+  justify-self: center;
+  @media (max-width: $md3) {
+    padding: 30px 5px 0px;
+    margin: 0px 0px 0px 20px;
+  }
+}
+
+//Оболочка
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+//Основная сетка
+.conteiner {
+  max-width: $maxWidthContainer;
+  margin: 0 auto;
+  @media (max-width: $md1) {
+    max-width: 970px;
+  }
+  @media (max-width: $md2) {
+    max-width: 750px;
+  }
+  @media (max-width: $md3) {
+    max-width: none;
+    padding: 0px 10px 0px 40px;
+  }
+}
+
+//forms
+@import "forms.scss";
+
+//ui
+@import "ui.scss";
+
+//header
+@import "header.scss";
+
+//footer
+@import "footer.scss";
+
+//works
+@import "works.scss";
+
+//home
+@import "home.scss";
+
+//blog
+@import "blog.scss";
+
+//AddPostForm
+@import "AddPostForm.scss";
+
+//Dialogs
+@import "Dialogs.scss";
+
+//SideBar
+@import "SideBar.scss";

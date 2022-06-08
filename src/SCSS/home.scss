@@ -1,0 +1,211 @@
+.conteiner {
+  max-width: $maxWidthContainer;
+  margin: 0 auto;
+  @media (max-width: $md1) {
+    max-width: 970px;
+  }
+  @media (max-width: $md2) {
+    max-width: 750px;
+    padding: 0px 0px 0px 50px;
+  }
+  @media (max-width: $md3) {
+    max-width: none;
+    padding: 0px 10px 0px 30px;
+  }
+}
+
+//=================================================================================================================================================================================================================
+.preview {
+  padding: 0px 0px 70px 0px;
+  @media (max-width: $md3) {
+    padding: 0px 0px 60px 0px;
+  }
+  // .preview__flex
+
+  &__flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: $md3) {
+      align-items: center;
+      flex-direction: column-reverse;
+      margin: 0 12px;
+    }
+  }
+  // .preview__content
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 1 auto;
+    padding: 18px 110px 0px 0px;
+    *:last-child {
+      margin-bottom: 0;
+    }
+    @media (max-width: $md1) {
+      padding: 18px 50px 0px 0px;
+    }
+    @media (max-width: $md3) {
+      padding: 0px 0px 0px 0px;
+      flex: 0 0 auto;
+      align-items: center;
+      text-align: center;
+      margin: 0 auto;
+      padding: 0px;
+    }
+  }
+
+  // .preview__title
+
+  &__title {
+    margin: 18px 0px;
+  }
+
+  // .preview__text
+
+  &__text {
+    margin: 18px 0px;
+    flex: 0 1 auto;
+  }
+
+  // .preview__btn
+
+  &__btn {
+    display: inline-block;
+    margin: 20px 0px;
+  }
+
+  // .preview__avatar
+
+  &__avatar {
+    flex: 0 0 243px;
+    height: 243px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: -5px 13px 0 0 #edf7fa;
+    img {
+      max-width: 100%;
+      height: 100%;
+    }
+    @media (max-width: $md3) {
+      overflow: visible;
+      box-shadow: none;
+      flex: 0 0 170px;
+      height: 170px;
+      margin: 0px 0px 40px 0px;
+    }
+  }
+}
+
+//=================================================================================================================================================================================================================
+.recent-posts {
+  background: #edf7fa;
+  padding: 25px 10px 13px;
+  @media (max-width: $md3) {
+    padding: 25px 0px 23px;
+  }
+
+  // .recent-posts__header
+
+  &__header {
+    display: flex;
+    padding: 0px 0px 19px 0px;
+  }
+
+  // .recent-posts__title
+
+  &__title {
+    padding: 0px 0px 20px 0px;
+    flex: 1 1 auto;
+  }
+
+  // .recent-posts__view-all
+
+  &__view-all {
+    flex: 0 0 auto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #00a8cc;
+    @media (max-width: $md3) {
+      display: none;
+    }
+  }
+
+  // .recent-posts__items
+
+  &__items {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px -10px;
+  }
+
+  // .recent-posts__column
+
+  &__column {
+    flex: 0 1 50%;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+  }
+  .recent-post {
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(187, 225, 250, 0.25);
+    border-radius: 4px;
+    padding: 20px;
+
+    &__title {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 38 / 26 * 100%;
+      color: inherit;
+      margin: 20px 0px;
+      transition: all 0.3s ease 0s;
+      &:hover {
+        color: #ff6464;
+      }
+    }
+    // .recent-post__info
+
+    &__info {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 26 / 18 * 100%;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      span {
+        margin: 0px 15px;
+      }
+    }
+
+    // .recent-post__text
+
+    &__text {
+      margin: 25px 0px 0px 0px;
+    }
+  }
+}
+
+//=================================================================================================================================================================================================================
+.featured-works {
+  padding: 30px 0px 80px 0px;
+  @media (max-width: $md3) {
+    padding: 30px 0px 30px 0px;
+  }
+  // .featured-works__title
+
+  &__title {
+    font-size: 30px;
+    margin: 20px 0px;
+  }
+  .works {
+    @media (max-width: $md3) {
+      flex-direction: row;
+      overflow: auto;
+      .works__item {
+        flex: 0 0 90%;
+        margin: 0px 15px 0px 0px;
+      }
+    }
+  }
+}

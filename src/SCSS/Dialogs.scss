@@ -1,0 +1,20 @@
+.dialogs {
+  font-size: 26px;
+  display: flex;
+  margin: 70px 0px 0px 30px;
+
+  .dialogsItems {
+    margin-right: 20px;
+  }
+  .dialogsItem {
+  }
+  .massages {
+    margin-left: 20px;
+
+    .massage {
+    }
+    textarea {
+      background: #edf7fa;
+    }
+  }
+}
