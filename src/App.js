@@ -11,16 +11,18 @@ import Works from './components/Works/Works';
 const App = (props) => {
   return (
     <div className="App">
-      <Header />
       <div className='wrapper'>
-        <div className='between'>
+        <Header />
+        <div className='grid-wrapper'>
           <SideBarConteiner />
-          <Routes>
-            <Route path='/' element={<Profile state={props.state} />} />
-            <Route path='/Works' element={<Works works={props.state.works} />} />
-            <Route path='/Blog' element={<BlogConteiner />} />
-            <Route path='/Dialogs' element={<DialogsConteiner />} />
-          </Routes>
+          <div className='content'>
+            <Routes>
+              <Route path='/' element={<Profile state={props.state} />} />
+              <Route path='/Works' element={<Works works={props.state.works} />} />
+              <Route path='/Blog' element={<BlogConteiner />} />
+              <Route path='/Dialogs' element={<DialogsConteiner />} />
+            </Routes>
+          </div>
         </div>
       </div>
       <Footer />

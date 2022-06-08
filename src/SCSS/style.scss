@@ -26,6 +26,7 @@ body {
   justify-self: center;
   @media (max-width: $md3) {
     padding: 30px 5px 0px;
+    margin: 0px 0px 0px 20px;
   }
 }
 
@@ -49,7 +50,7 @@ body {
   }
   @media (max-width: $md3) {
     max-width: none;
-    padding: 0 10px;
+    padding: 0px 10px 0px 40px;
   }
 }
 

@@ -49,21 +49,21 @@
     display: flex;
     align-items: center;
 
-    @media (max-width: $md3) {
-      height: 50px;
-      display: block;
-      li {
-        margin-bottom: 10px;
-        &:last-child {
-          margin: 0px 0px 0px 0px;
-        }
-      }
-    }
+    // @media (max-width: $md3) {
+    //   height: 50px;
+    //   display: block;
+    //   li {
+    //     margin-bottom: 10px;
+    //     &:last-child {
+    //       margin: 0px 0px 0px 0px;
+    //     }
+    //   }
+    // }
     li {
       margin: 0px 20px;
-      @media (max-width: $md3) {
-        margin: 40px 0;
-      }
+      // @media (max-width: $md3) {
+      //   margin: 40px 0;
+      // }
     }
   }
 
@@ -81,10 +81,10 @@
         color: #ff6464;
       }
     }
-    @media (max-width: $md3) {
-      font-size: 40px;
-      display: block;
-      text-align: center;
-    }
+    // @media (max-width: $md3) {
+    //   font-size: 40px;
+    //   display: block;
+    //   text-align: center;
+    // }
   }
 }
