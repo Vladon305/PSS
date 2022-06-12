@@ -23,9 +23,11 @@ const Dialogs = (props) => {
             {dialogsElement}
           </div>
           <div className='massages'>
-            {massagesElement}
-            <div><textarea placeholder='Enter your massage' value={props.state.newMassageBody} onChange={onNewMassageChange}></textarea></div>
-            <div><button onClick={onSendMassageClick}>Send</button></div>
+            <div className='massages-inner'>{massagesElement}</div>
+            <div className='sendMassage'>
+              <div className='textarea'><textarea placeholder='Enter your massage' value={props.state.newMassageBody} onChange={onNewMassageChange}></textarea></div>
+              <div><button onClick={onSendMassageClick}>Send</button> </div>
+            </div>
           </div>
         </div>
       </div>

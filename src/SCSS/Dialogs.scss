@@ -1,20 +1,60 @@
 .dialogs {
   font-size: 26px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  grid-gap: 10px;
+  grid-template-areas: "d m";
   margin: 70px 0px 0px 30px;
 
   .dialogsItems {
+    grid-area: d;
     margin-right: 20px;
+    max-height: 400px;
+    background: #edf7fa;
+    border: 1px solid rgb(230, 229, 229);
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    overflow-x: scroll;
   }
   .dialogsItem {
   }
   .massages {
-    margin-left: 20px;
+    grid-area: m;
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    margin: 0px 20px 0px 20px;
+    background: #edf7fa;
+    border: 1px solid rgb(230, 229, 229);
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    .massages-inner {
+      padding: 0px 0px 50px 0px;
+      overflow-x: scroll;
+    }
 
     .massage {
     }
-    textarea {
-      background: #edf7fa;
+    .sendMassage {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      .textarea {
+        width: 80%;
+        textarea {
+          width: 100%;
+          border: 1px solid rgb(230, 229, 229);
+          border-radius: 15px;
+          padding: 5px;
+        }
+      }
     }
   }
 }

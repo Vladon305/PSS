@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Post from '../Blog/Post';
 
 const RecentPosts = (props) => {
@@ -19,7 +20,7 @@ const RecentPosts = (props) => {
     <section className="recent-posts">
       <div className="recent-posts__header">
         <div className="recent-posts__title title-posts"> Recent posts</div>
-        <a className="recent-posts__view-all">View all</a>
+        <NavLink className="recent-posts__view-all" to="/Blog">View all</NavLink>
       </div>
       <div className="recent-posts__items">
         <div className="recent-posts__column">
