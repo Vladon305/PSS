@@ -2,14 +2,20 @@ import React from 'react';
 import User from './User';
 
 const Friends = (props) => {
+  let onPageChanged = (p) => {
+    props.onPostChanged(p)
+  }
   return (
     <div className='Friends'>
-      <div className="selectedPage">
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
+      <div className='pagination'>
+        {props.pages.map(p => {
+          return <span
+            className={props.currentPage === p ? 'selectedPage' : null}
+            key={p}
+            onClick={(e) => {
+              onPageChanged(p);
+            }}>{p}</span>
+        })}
       </div>
       {
         props.users.map(u => <User
