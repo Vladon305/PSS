@@ -1,25 +1,29 @@
 import Friends from './Friends';
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow } from '../../Redux/friends-Reduser';
+import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow, toggleIsFetching } from '../../Redux/friends-Reduser';
 import React from 'react';
 import axios from 'axios';
+import Preloader from '../common/Preloader/Preloader';
 
 class FriendsConteiner extends React.Component {
 
   componentDidMount() {
-    if (this.props.users.length === 0) {
+    this.props.toggleIsFetching(true)
+    axios.get
+      (`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+      .then(response => {
+        this.props.toggleIsFetching(false)
+        this.props.setUsers(response.data.items)
+        this.props.setTotalUsersCount(response.data.totalCount)
+      });
 
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-        .then(response => {
-          this.props.setUsers(response.data.items)
-          this.props.setTotalUsersCount(response.data.totalCount)
-        });
-    }
   }
   onPostChanged = (pageNumber) => {
+    this.props.toggleIsFetching(true)
     this.props.setCurrentPage(pageNumber);
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
       .then(response => {
+        this.props.toggleIsFetching(false)
         this.props.setUsers(response.data.items)
       });
   }
@@ -33,15 +37,18 @@ class FriendsConteiner extends React.Component {
       pages.push(i)
     }
 
-    return <Friends
-      users={this.props.users}
-      follow={this.props.follow}
-      unfollow={this.props.unfollow}
-      pages={pages}
-      currentPage={this.props.currentPage}
-      setCurrentPage={this.props.setCurrentPage}
-      onPostChanged={this.onPostChanged}
-    />
+    return <>
+      {this.props.isFetching ? <Preloader /> : null}
+      <Friends
+        users={this.props.users}
+        follow={this.props.follow}
+        unfollow={this.props.unfollow}
+        pages={pages}
+        currentPage={this.props.currentPage}
+        setCurrentPage={this.props.setCurrentPage}
+        onPostChanged={this.onPostChanged}
+      />
+    </>
   }
 }
 
@@ -50,9 +57,10 @@ const mapStateToProps = (state) => {
     users: state.FriendsPage.users,
     pageSize: state.FriendsPage.pageSize,
     totalUsersCount: state.FriendsPage.totalUsersCount,
-    currentPage: state.FriendsPage.currentPage
+    currentPage: state.FriendsPage.currentPage,
+    isFetching: state.FriendsPage.isFetching
   }
 }
 
-export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount })
+export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching })
   (FriendsConteiner);

@@ -7,27 +7,30 @@ const Friends = (props) => {
   }
   return (
     <div className='Friends'>
-      <div className='pagination'>
-        {props.pages.map(p => {
-          return <span
-            className={props.currentPage === p ? 'selectedPage' : null}
-            key={p}
-            onClick={(e) => {
-              onPageChanged(p);
-            }}>{p}</span>
-        })}
+      <div className='conteiner'>
+        <div className='pagination'>
+          {props.pages.map(p => {
+            return <span
+              className={props.currentPage === p ? 'selectedPage' : null}
+              key={p}
+              onClick={(e) => {
+                onPageChanged(p);
+              }}>{p}</span>
+          })}
+        </div>
+        {
+          props.users.map(u => <User
+            followed={u.followed}
+            id={u.id}
+            key={u.id}
+            photos={u.photos.small}
+            fullName={u.name}
+            status={u.status}
+            follow={props.follow}
+            unfollow={props.unfollow}
+          />)
+        }
       </div>
-      {
-        props.users.map(u => <User
-          followed={u.followed}
-          id={u.id}
-          key={u.id}
-          photos={u.photos.smoll}
-          fullName={u.name}
-          follow={props.follow}
-          unfollow={props.unfollow}
-        />)
-      }
     </div>
   );
 }
