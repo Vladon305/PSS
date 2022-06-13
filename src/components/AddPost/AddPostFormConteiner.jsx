@@ -1,6 +1,6 @@
 import AddPostForm from './AddPostForm';
 import { connect } from "react-redux";
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../Redux/posts-Reduser';
+import { addPost, updateNewPostText } from '../../Redux/posts-Reduser';
 
 const mapStateToProps = (state) => {
   return {
@@ -8,17 +8,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addPost: () => {
-      dispatch(addPostActionCreator());
-    },
-    onPostCange: (title, category, text) => {
-      dispatch(updateNewPostTextActionCreator(title, category, text));
-    }
-  }
-}
-
-const AddPostFormConteiner = connect(mapStateToProps, mapDispatchToProps)(AddPostForm);
+const AddPostFormConteiner = connect(mapStateToProps, {
+  addPost,
+  updateNewPostText
+})(AddPostForm);
 
 export default AddPostFormConteiner;

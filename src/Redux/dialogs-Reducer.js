@@ -46,8 +46,8 @@ const dialogsReducer = (state = initialState, action) => {
   }
 }
 
-export const sendMassageCreator = () => ({ type: SEND_MASSAGE });
-export const updateNewMassageBodyCreator = (body) =>
+export const sendMassage = () => ({ type: SEND_MASSAGE });
+export const updateNewMassageBody = (body) =>
   ({ type: UPDATE_NEW_MASSAGE_BODY, body: body })
 
 

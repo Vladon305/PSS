@@ -1,6 +1,6 @@
 import Friends from './Friends';
 import { connect } from "react-redux";
-import { followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC } from '../../Redux/friends-Reduser';
+import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow } from '../../Redux/friends-Reduser';
 import React from 'react';
 import axios from 'axios';
 
@@ -54,25 +54,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch(followAC(userId))
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowAC(userId))
-    },
-    setUsers: (users) => {
-      dispatch(setUsersAC(users))
-    },
-    setCurrentPage: (pageNumber) => {
-      dispatch(setCurrentPageAC(pageNumber))
-    },
-    setTotalUsersCount: (totalCount) => {
-      dispatch(setTotalUsersCountAC(totalCount))
-    }
-
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FriendsConteiner);
+export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount })
+  (FriendsConteiner);
