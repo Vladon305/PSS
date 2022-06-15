@@ -1,5 +1,7 @@
 import React from 'react';
 import User from './User';
+import Preloader from '../common/Preloader/Preloader';
+
 
 const Friends = (props) => {
   let onPageChanged = (p) => {
@@ -18,7 +20,8 @@ const Friends = (props) => {
               }}>{p}</span>
           })}
         </div>
-        {
+
+        {props.isFetching ? <Preloader /> :
           props.users.map(u => <User
             followed={u.followed}
             id={u.id}
@@ -30,6 +33,7 @@ const Friends = (props) => {
             unfollow={props.unfollow}
           />)
         }
+
       </div>
     </div>
   );

@@ -1,12 +1,9 @@
 import React from 'react';
 
 const MenuIcon = (props) => {
-  const openSideBar = () => {
-
-  }
   return (
-    <div className='menu'>
-      <div className="menu__icon icon-menu" onClick={openSideBar}>
+    <div className='menu' onClick={props.toggleActive}>
+      <div className={props.toggleActiveStyles()} >
         <span></span>
         <span></span>
         <span></span>

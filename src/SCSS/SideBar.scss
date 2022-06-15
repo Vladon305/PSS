@@ -4,8 +4,13 @@
   grid-gap: 10px;
   grid-template-areas: "s c";
   @media (max-width: $md2) {
+    grid-template-columns: 1fr 20fr;
+    grid-gap: 0;
+  }
+  @media (max-width: $md3) {
     display: block;
   }
+
   .SideBar {
     grid-area: s;
     background: #edf7fa;
@@ -13,6 +18,21 @@
     border-left: none;
     border-radius: 40px;
     margin: 60px 0px 0px 0px;
+    &._active {
+      transform: translateX(0);
+      border-radius: 30px;
+      transition: all 0.2s ease 0.2s;
+      z-index: 20;
+      @media (max-width: $md3) {
+        position: fixed;
+        top: -60px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        overflow: auto;
+      }
+    }
     .SideBar__inner {
       padding: 20px 10px;
       display: flex;
@@ -31,11 +51,20 @@
       }
     }
     @media (max-width: $md2) {
-      display: none;
+      transform: translateX(-100%);
+      transition: all 0.2s ease 0.2s;
     }
   }
+
   .content {
     grid-area: c;
+    @media (max-width: $md2) {
+      transform: translateX(-50px);
+    }
+    @media (max-width: $md3) {
+      transform: translateY(-375px);
+      margin: 0px 0px 0px 40px;
+    }
   }
 }
 .menu {

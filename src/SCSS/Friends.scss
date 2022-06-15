@@ -20,7 +20,8 @@
     }
     .user-inner {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
+      padding: 0px 10px;
       .user__present {
         display: flex;
         flex-direction: column;
@@ -40,10 +41,12 @@
           }
         }
         .user__followed {
+          margin: 0px 0px 5px 0px;
           button {
+            padding: 5px;
             font-size: 20px;
             border-radius: 40px;
-            background: #fff;
+            background: #c29e9e;
           }
         }
       }

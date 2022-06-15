@@ -18,6 +18,9 @@ body {
   font-family: $fontFamily;
   color: #21243d;
   font-size: 14px;
+  &._lock {
+    overflow: hidden;
+  }
 }
 
 .page {
@@ -26,7 +29,6 @@ body {
   justify-self: center;
   @media (max-width: $md3) {
     padding: 30px 5px 0px;
-    margin: 0px 0px 0px 20px;
   }
 }
 
