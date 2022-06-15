@@ -1,5 +1,5 @@
 let initialState = [
-  { page: 'Profile', link: '/' },
+  { page: 'Profile', link: '/Profile' },
   { page: 'Dialogs', link: '/Dialogs' },
   { page: 'Blog', link: '/Blog' },
   { page: 'Works', link: '/Works' },

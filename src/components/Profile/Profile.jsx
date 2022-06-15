@@ -1,18 +1,22 @@
 import React from 'react';
+import Preloader from '../common/Preloader/Preloader';
 import Work from '../Works/Work';
 import AboutUser from './AboutUser';
 import RecentPostsConteiner from './RecentPostsConteiner';
 
 const Profile = (props) => {
 
-  let workElements = props.state.works
+  let workElements = props.works
     .map(w => <Work title={w.title} data={w.data} category={w.category} text={w.text} key={w.id} />);
 
+  if (!props.profile) {
+    return <Preloader />
+  }
   return (
     <div className='Profile'>
       <main className="page">
         <div className="conteiner">
-          <AboutUser />
+          <AboutUser aboutMe={props.profile.aboutMe} Name={props.profile.fullName} ava={props.profile.photos.large} />
           <RecentPostsConteiner />
           <section className="featured-works">
             <div className="conteiner">

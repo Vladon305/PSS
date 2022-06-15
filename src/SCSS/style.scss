@@ -18,8 +18,10 @@ body {
   font-family: $fontFamily;
   color: #21243d;
   font-size: 14px;
-  &._lock {
-    overflow: hidden;
+  @media (max-width: $md3) {
+    &._lock {
+      overflow: hidden;
+    }
   }
 }
 

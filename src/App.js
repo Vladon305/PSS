@@ -5,7 +5,7 @@ import DialogsConteiner from './components/Dialogs/DialogsConteiner';
 import Footer from './components/Footer/Footer';
 import FriendsConteiner from './components/Friends/FriendsConteiner';
 import Header from './components/Header/Header';
-import Profile from './components/Profile/Profile';
+import ProfileConteiner from './components/Profile/ProfileConteiner';
 import SideBarConteiner from './components/SideBar/SideBarConteiner';
 import Works from './components/Works/Works';
 
@@ -18,7 +18,7 @@ const App = (props) => {
           <SideBarConteiner />
           <div className='content'>
             <Routes>
-              <Route path='/' element={<Profile state={props.state} />} />
+              <Route path='/Profile/:userId' element={<ProfileConteiner />} />
               <Route path='/Works' element={<Works works={props.state.works} />} />
               <Route path='/Blog' element={<BlogConteiner />} />
               <Route path='/Dialogs' element={<DialogsConteiner />} />

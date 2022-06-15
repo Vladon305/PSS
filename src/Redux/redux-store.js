@@ -5,13 +5,15 @@ import FriendsReducer from "./friends-Reduser";
 import postsReducer from "./posts-Reduser";
 import sideBarReduser from "./sideBar-reduser";
 import worksReducer from "./works-Reducer";
+import profileReducer from "./profile-Reducer";
 
 let redusers = combineReducers({
   dialogsPage: dialogsReducer,
   posts: postsReducer,
   works: worksReducer,
   sideBar: sideBarReduser,
-  FriendsPage: FriendsReducer
+  FriendsPage: FriendsReducer,
+  ProfilePage: profileReducer
 });
 
 let store = createStore(redusers);

@@ -1,12 +1,13 @@
 import React from 'react';
 import userPhoto from '../../assets/images/user.webp';
+import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
   return (
     <div className='user' key={props.id}>
       <div className='user-inner'>
         <div className='user__present'>
-          <div className='user__img'><img src={props.photos != null ? props.photos : userPhoto} alt='user' /></div>
+          <NavLink className='user__img'><img src={props.photos != null ? props.photos : userPhoto} alt='user' /></NavLink>
           <div className='user__followed'>{
             props.followed ?
               <button onClick={() => props.unfollow(props.id)}>unfollow</button>
