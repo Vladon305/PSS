@@ -1,34 +1,34 @@
 import Friends from './Friends';
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow, toggleIsFetching } from '../../Redux/friends-Reduser';
+import {
+  follow, setCurrentPage, setTotalUsersCount,
+  setUsers, unfollow, toggleIsFetching
+} from '../../Redux/friends-Reduser';
 import React from 'react';
-import axios from 'axios';
+import { usersAPI } from '../../API/API';
 
 class FriendsConteiner extends React.Component {
 
   componentDidMount() {
     this.props.toggleIsFetching(true)
-    // if (this.props.users !== 0) {
-    axios.get
-      (`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      .then(response => {
+    if (this.props.users === 0) {
+      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
         this.props.toggleIsFetching(false)
-        this.props.setUsers(response.data.items)
-        this.props.setTotalUsersCount(response.data.totalCount)
+        this.props.setUsers(data.items)
+        this.props.setTotalUsersCount(data.totalCount)
       });
-    // } else {
-    // this.props.toggleIsFetching(false)
-    // }
-    console.log(this.props.users);
+    } else {
+      this.props.toggleIsFetching(false)
+    }
   }
   onPostChanged = (pageNumber) => {
     this.props.toggleIsFetching(true)
     this.props.setCurrentPage(pageNumber);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-      .then(response => {
-        this.props.toggleIsFetching(false)
-        this.props.setUsers(response.data.items)
-      });
+
+    usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+      this.props.toggleIsFetching(false)
+      this.props.setUsers(data.items)
+    });
   }
   render() {
 

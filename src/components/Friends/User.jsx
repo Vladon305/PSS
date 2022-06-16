@@ -7,7 +7,7 @@ const User = (props) => {
     <div className='user' key={props.id}>
       <div className='user-inner'>
         <div className='user__present'>
-          <NavLink className='user__img'><img src={props.photos != null ? props.photos : userPhoto} alt='user' /></NavLink>
+          <NavLink className='user__img' to={`Profile/${props.id}`}><img src={props.photos != null ? props.photos : userPhoto} alt='user' /></NavLink>
           <div className='user__followed'>{
             props.followed ?
               <button onClick={() => props.unfollow(props.id)}>unfollow</button>
