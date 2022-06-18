@@ -1,11 +1,20 @@
 import Friends from './Friends';
 import { connect } from "react-redux";
+<<<<<<< HEAD
 import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow, toggleIsFetching } from '../../Redux/friends-Reduser';
 import React, { useEffect } from 'react';
+=======
+import {
+  follow, setCurrentPage, setTotalUsersCount,
+  setUsers, unfollow, toggleIsFetching
+} from '../../Redux/friends-Reduser';
+import React from 'react';
+>>>>>>> 92ee8c093685e4a4af92293891ae8e803221a20d
 import { usersAPI } from '../../API/API';
 
 const FriendsConteiner = ({ currentPage, pageSize, users, follow, unfollow, isFetching, ...props }) => {
 
+<<<<<<< HEAD
   useEffect(() => {
     props.toggleIsFetching(true);
     // if (props.users === 0) {
@@ -17,6 +26,30 @@ const FriendsConteiner = ({ currentPage, pageSize, users, follow, unfollow, isFe
     // } else {
     //   props.toggleIsFetching(false);
     // }
+=======
+  componentDidMount() {
+    this.props.toggleIsFetching(true)
+    if (this.props.users === 0) {
+      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+        this.props.toggleIsFetching(false)
+        this.props.setUsers(data.items)
+        this.props.setTotalUsersCount(data.totalCount)
+      });
+    } else {
+      this.props.toggleIsFetching(false)
+    }
+  }
+  onPostChanged = (pageNumber) => {
+    this.props.toggleIsFetching(true)
+    this.props.setCurrentPage(pageNumber);
+
+    usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+      this.props.toggleIsFetching(false)
+      this.props.setUsers(data.items)
+    });
+  }
+  render() {
+>>>>>>> 92ee8c093685e4a4af92293891ae8e803221a20d
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

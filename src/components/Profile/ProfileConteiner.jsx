@@ -2,6 +2,7 @@ import Profile from './Profile';
 import { connect } from 'react-redux';
 import React from 'react';
 import { setUserProfile } from '../../Redux/profile-Reducer';
+<<<<<<< HEAD
 import { useParams } from 'react-router-dom';
 import { usersAPI } from '../../API/API';
 import { useEffect } from 'react';
@@ -11,6 +12,24 @@ const ProfileConteiner = ({ profile, ...props }) => {
   let { userId } = useParams();
   if (!userId) {
     userId = 1
+=======
+import { usersAPI } from '../../API/API';
+import { useParams } from 'react-router-dom';
+import { compose } from 'redux';
+
+export function withParams(component) {
+  return props => <component {...props} params={useParams()} />
+}
+
+class ProfileConteiner extends React.Component {
+
+  componentDidMount() {
+    // this.props.toggleIsFetching(true)
+    usersAPI.getUserProfile(this.props.params).then(data => {
+      // this.props.toggleIsFetching(false);
+      this.props.setUserProfile(data);
+    });
+>>>>>>> 92ee8c093685e4a4af92293891ae8e803221a20d
   }
 
   const setUserProfile = (data) => props.setUserProfile(data);
@@ -52,4 +71,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setUserProfile })(ProfileConteiner);
+export default compose(
+  connect(mapStateToProps, { setUserProfile }),
+  withParams
+)(ProfileConteiner);
