@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { usersAPI } from '../../API/API';
+import { setUserProfile } from '../../Redux/profile-Reducer'
 import { useEffect } from 'react';
+import { compose } from 'redux';
 
 const ProfileConteiner = ({ profile, ...props }) => {
 
@@ -53,5 +55,4 @@ const mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps, { setUserProfile }),
-  withParams
 )(ProfileConteiner);
