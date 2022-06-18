@@ -3,34 +3,34 @@ import User from './User';
 import Preloader from '../common/Preloader/Preloader';
 
 
-const Friends = (props) => {
-  let onPageChanged = (p) => {
+const Friends = ({ pages, currentPage, isFetching, users, follow, unfollow, ...props }) => {
+  let onPageChange = (p) => {
     props.onPostChanged(p)
   }
   return (
     <div className='Friends'>
       <div className='conteiner'>
         <div className='pagination'>
-          {props.pages.map(p => {
+          {pages.map(p => {
             return <span
-              className={props.currentPage === p ? 'selectedPage' : null}
+              className={currentPage === p ? 'selectedPage' : null}
               key={p}
               onClick={(e) => {
-                onPageChanged(p);
+                onPageChange(p);
               }}>{p}</span>
           })}
         </div>
 
-        {props.isFetching ? <Preloader /> :
-          props.users.map(u => <User
+        {isFetching ? <Preloader /> :
+          users.map(u => <User
             followed={u.followed}
             id={u.id}
             key={u.id}
             photos={u.photos.small}
             fullName={u.name}
             status={u.status}
-            follow={props.follow}
-            unfollow={props.unfollow}
+            follow={follow}
+            unfollow={unfollow}
           />)
         }
 

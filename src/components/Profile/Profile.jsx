@@ -1,28 +1,25 @@
 import React from 'react';
 import Preloader from '../common/Preloader/Preloader';
 import Work from '../Works/Work';
-import AboutUser from './AboutUser';
+import AboutUserConteiner from './AboutUserConteiner';
 import RecentPostsConteiner from './RecentPostsConteiner';
 
-const Profile = (props) => {
+const Profile = ({ works, profile, ...props }) => {
 
-  let workElements = props.works
-    .map(w => <Work title={w.title} data={w.data} category={w.category} text={w.text} key={w.id} />);
-
-  if (!props.profile) {
+  if (!profile) {
     return <Preloader />
   }
   return (
     <div className='Profile'>
       <main className="page">
         <div className="conteiner">
-          <AboutUser aboutMe={props.profile.aboutMe} Name={props.profile.fullName} ava={props.profile.photos.large} />
+          <AboutUserConteiner />
           <RecentPostsConteiner />
           <section className="featured-works">
             <div className="conteiner">
               <div className="featured-works__title title-posts">Featured works</div>
               <div className="works">
-                {workElements}
+                {works.map(w => <Work title={w.title} data={w.data} category={w.category} text={w.text} key={w.id} />)}
               </div>
             </div>
           </section>

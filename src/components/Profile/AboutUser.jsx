@@ -1,19 +1,19 @@
 import React from 'react';
 
-const AboutUser = (props) => {
+const AboutUser = ({ fullName, aboutMe, ava }) => {
   return (
     <div className='AboutUser'>
       <section className="preview">
         <div className="preview__flex">
           <div className="preview__content">
-            <h1 className="preview__title title">{props.Name}</h1>
-            <div className="preview__text text">{props.aboutMe}</div>
+            <h1 className="preview__title title">{fullName}</h1>
+            <div className="preview__text text">{aboutMe}</div>
             <div className="preview__btn">
-              <a href="#" className="btn">Download Resume</a>
+              <button className="btn">Download Resume</button>
             </div>
           </div>
           <div className="preview__avatar">
-            <img src={props.ava} alt="" />
+            <img src={ava} alt="" />
           </div>
         </div>
       </section >
