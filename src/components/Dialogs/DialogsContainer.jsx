@@ -8,9 +8,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-const DialogsConteiner = connect(mapStateToProps, {
+const DialogsContainer = connect(mapStateToProps, {
   sendMassage,
   updateNewMassageBody
 })(Dialogs);
 
-export default DialogsConteiner;
+export default DialogsContainer;

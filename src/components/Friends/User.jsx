@@ -1,6 +1,7 @@
 import React from 'react';
 import userPhoto from '../../assets/images/user.webp';
 import { NavLink } from 'react-router-dom';
+import { followAPI } from '../../API/API';
 
 const User = ({ id, photos, followed, follow, unfollow, fullName, status, ...props }) => {
   return (
@@ -10,6 +11,23 @@ const User = ({ id, photos, followed, follow, unfollow, fullName, status, ...pro
           <NavLink className='user__img' to={`/Profile/${id}`}>
             <img src={photos != null ? photos : userPhoto} alt='user' />
           </NavLink>
+          <div className="user__followed">
+            {followed ?
+              <button onClick={() => {
+                followAPI.unfollowing(id).then(data => {
+                  if (data.resultCode === 0) {
+                    follow(id)
+                  }
+                })
+              }} >unfollow</button>
+              : <button onClick={() => {
+                followAPI.following(id).then(data => {
+                  if (data.resultCode === 0) {
+                    unfollow(id)
+                  }
+                })
+              }} >follow</button>}
+          </div>
         </div>
         <div className='user__info'>
           <div className="user__name">{fullName}</div>

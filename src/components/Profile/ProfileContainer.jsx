@@ -7,18 +7,17 @@ import { setUserProfile } from '../../Redux/profile-Reducer'
 import { useEffect } from 'react';
 import { compose } from 'redux';
 
-const ProfileConteiner = ({ profile, ...props }) => {
+const ProfileContainer = (props) => {
 
   let { userId } = useParams();
   if (!userId) {
-    userId = 1
+    userId = 24521;
   }
 
   const setUserProfile = (data) => props.setUserProfile(data);
 
   useEffect(() => {
     // props.toggleIsFetching(true)
-
     usersAPI.getUserProfile(userId).then(data => {
       // props.toggleIsFetching(false);
       setUserProfile(data);
@@ -26,11 +25,11 @@ const ProfileConteiner = ({ profile, ...props }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <Profile {...props} profile={profile} />
+  return <Profile works={props.works} profile={props.profile} />
 
 }
 
-// class ProfileConteiner extends React.Component {
+// class ProfileContainer extends React.Component {
 
 //   componentDidMount() {
 //     // this.props.toggleIsFetching(true)
@@ -55,4 +54,4 @@ const mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps, { setUserProfile }),
-)(ProfileConteiner);
+)(ProfileContainer);

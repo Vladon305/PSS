@@ -1,8 +1,8 @@
 import React from 'react';
 import Preloader from '../common/Preloader/Preloader';
 import Work from '../Works/Work';
-import AboutUserConteiner from './AboutUserConteiner';
-import RecentPostsConteiner from './RecentPostsConteiner';
+import AboutUserContainer from './AboutUserContainer';
+import RecentPostsContainer from './RecentPostsContainer';
 
 const Profile = ({ works, profile, ...props }) => {
 
@@ -12,11 +12,11 @@ const Profile = ({ works, profile, ...props }) => {
   return (
     <div className='Profile'>
       <main className="page">
-        <div className="conteiner">
-          <AboutUserConteiner />
-          <RecentPostsConteiner />
+        <div className="container">
+          <AboutUserContainer />
+          <RecentPostsContainer />
           <section className="featured-works">
-            <div className="conteiner">
+            <div className="container">
               <div className="featured-works__title title-posts">Featured works</div>
               <div className="works">
                 {works.map(w => <Work title={w.title} data={w.data} category={w.category} text={w.text} key={w.id} />)}

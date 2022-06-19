@@ -9,6 +9,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const AboutUserConteiner = connect(mapStateToProps)(AboutUser);
+const AboutUserContainer = connect(mapStateToProps)(AboutUser);
 
-export default AboutUserConteiner;
+export default AboutUserContainer;

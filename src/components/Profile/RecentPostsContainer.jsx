@@ -7,6 +7,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const RecentPostsConteiner = connect(mapStateToProps)(RecentPosts);
+const RecentPostsContainer = connect(mapStateToProps)(RecentPosts);
 
-export default RecentPostsConteiner;
+export default RecentPostsContainer;

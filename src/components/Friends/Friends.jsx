@@ -9,13 +9,13 @@ const Friends = ({ pages, currentPage, isFetching, users, follow, unfollow, ...p
   }
   return (
     <div className='Friends'>
-      <div className='conteiner'>
+      <div className='container'>
         <div className='pagination'>
           {pages.map(p => {
             return <span
               className={currentPage === p ? 'selectedPage' : null}
               key={p}
-              onClick={(e) => {
+              onClick={(p) => {
                 onPageChange(p);
               }}>{p}</span>
           })}

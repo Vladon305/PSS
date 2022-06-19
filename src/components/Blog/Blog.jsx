@@ -1,5 +1,5 @@
 import React from 'react';
-import AddPostFormConteiner from '../AddPost/AddPostFormConteiner';
+import AddPostFormContainer from '../AddPost/AddPostFormContainer';
 import Post from './Post';
 
 const Blog = (props) => {
@@ -13,9 +13,9 @@ const Blog = (props) => {
   return (
     <div className='Blog'>
       <main className="page">
-        <div className="conteiner">
+        <div className="container">
           <h1 className="blog__title title">Blog</h1>
-          <AddPostFormConteiner />
+          <AddPostFormContainer />
           <div className="blog__items">
             {postElement}
           </div>

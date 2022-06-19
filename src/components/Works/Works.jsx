@@ -8,7 +8,7 @@ const Works = (props) => {
   return (
     <div className='works'>
       <main className="page">
-        <div className="conteiner">
+        <div className="container">
           <h1 className="works__main-title title">Works</h1>
           {workElements}
         </div>

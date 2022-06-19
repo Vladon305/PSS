@@ -1,10 +1,10 @@
 import Friends from './Friends';
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow, toggleIsFetching } from '../../Redux/friends-Reduser';
+import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow, toggleIsFetching } from '../../Redux/friends-Reducer';
 import React, { useEffect } from 'react';
 import { usersAPI } from '../../API/API';
 
-const FriendsConteiner = ({ currentPage, pageSize, users, follow, unfollow, isFetching, ...props }) => {
+const FriendsContainer = ({ currentPage, pageSize, users, follow, unfollow, isFetching, ...props }) => {
 
   useEffect(() => {
     props.toggleIsFetching(true);
@@ -50,7 +50,7 @@ const FriendsConteiner = ({ currentPage, pageSize, users, follow, unfollow, isFe
   />
 }
 
-// class FriendsConteiner extends React.Component {
+// class FriendsContainer extends React.Component {
 
 //   componentDidMount() {
 //     this.props.toggleIsFetching(true)
@@ -111,4 +111,4 @@ export default connect(mapStateToProps, {
   follow, unfollow, setUsers, setCurrentPage,
   setTotalUsersCount, toggleIsFetching
 })
-  (FriendsConteiner);
+  (FriendsContainer);

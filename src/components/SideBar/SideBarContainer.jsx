@@ -4,7 +4,7 @@ import { useState } from 'react';
 import React from 'react';
 import MenuIcon from './MenuIcon';
 
-const SideBarConteiner = (props) => {
+const SideBarContainer = (props) => {
 
   const [SideBarState, ChangeState] = useState({
     activeObgect: null,
@@ -52,4 +52,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(SideBarConteiner);
+export default connect(mapStateToProps)(SideBarContainer);

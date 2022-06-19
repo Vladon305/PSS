@@ -8,18 +8,18 @@ const AddPostForm = (props) => {
 
 
 
-  let postCange = () => {
+  let postChange = () => {
     let title = newTitleElement.current.value;
     let category = newCategoryElement.current.value;
     let text = newTextElement.current.value;
 
-    props.onPostCange(title, category, text);
+    props.updateNewPostText(title, category, text);
   }
   // let addPost = () => {
   //   props.dispatch(addPostActionCreator());
   // }
 
-  // let onPostCange = () => {
+  // let onPostChange = () => {
 
   //   let title = newTitleElement.current.value;
   //   let category = newCategoryElement.current.value;
@@ -29,9 +29,9 @@ const AddPostForm = (props) => {
   // }
   return (
     <div className='AddPostForm'>
-      <textarea ref={newTitleElement} onChange={postCange} value={props.newValue.newPostTitle} />
-      <textarea ref={newCategoryElement} onChange={postCange} value={props.newValue.newPostCategory} />
-      <textarea ref={newTextElement} onChange={postCange} value={props.newValue.newPostText} />
+      <textarea ref={newTitleElement} onChange={postChange} value={props.newValue.newPostTitle} />
+      <textarea ref={newCategoryElement} onChange={postChange} value={props.newValue.newPostCategory} />
+      <textarea ref={newTextElement} onChange={postChange} value={props.newValue.newPostText} />
 
       <button onClick={props.addPost}>Add post</button>
     </div>

@@ -6,8 +6,8 @@ let initialState = [
   { page: 'Friends', link: '/Friends' }
 ];
 
-const sideBarReduser = (state = initialState, action) => {
+const sideBarReducer = (state = initialState, action) => {
   return state
 }
 
-export default sideBarReduser;
+export default sideBarReducer;
