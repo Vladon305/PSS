@@ -3,7 +3,7 @@ import User from './User';
 import Preloader from '../common/Preloader/Preloader';
 
 
-const Friends = ({ pages, currentPage, isFetching, users, follow, unfollow, ...props }) => {
+const Friends = ({ pages, currentPage, isFetching, users, follow, unfollow, followingInProgress, toggleFollowingProgress, ...props }) => {
   let onPageChange = (p) => {
     props.onPostChanged(p)
   }
@@ -31,6 +31,7 @@ const Friends = ({ pages, currentPage, isFetching, users, follow, unfollow, ...p
             status={u.status}
             follow={follow}
             unfollow={unfollow}
+            followingInProgress={followingInProgress}
           />)
         }
 

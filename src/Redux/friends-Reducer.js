@@ -1,9 +1,12 @@
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
+import { followAPI, usersAPI } from "../API/API";
+
+const ACCEPT_FOLLOW = 'ACCEPT_FOLLOW';
+const ACCEPT_UNFOLLOW = 'ACCEPT_FOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 
 let initialState = {
@@ -11,12 +14,13 @@ let initialState = {
   pageSize: 5,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: true
+  isFetching: true,
+  followingInProgress: []
 };
 
 const FriendsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FOLLOW:
+    case ACCEPT_FOLLOW:
       return {
         ...state,
         users: state.users.map(u => {
@@ -27,7 +31,7 @@ const FriendsReducer = (state = initialState, action) => {
         })
       }
 
-    case UNFOLLOW:
+    case ACCEPT_UNFOLLOW:
       return {
         ...state,
         users: state.users.map(u => {
@@ -62,15 +66,23 @@ const FriendsReducer = (state = initialState, action) => {
         isFetching: action.isFetching
       }
 
+    case TOGGLE_IS_FOLLOWING_PROGRESS:
+      debugger
+      return {
+        ...state,
+        followingInProgress: action.following
+          ? [state.followingInProgress, action.userId]
+          : [state.followingInProgress.filter(uId => uId !== action.userId)]
+      }
 
     default:
       return state;
   }
 }
 
-export const follow = (userId) => ({ type: FOLLOW, userId })
+export const acceptFollow = (userId) => ({ type: ACCEPT_FOLLOW, userId })
 
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId })
+export const acceptUnfollow = (userId) => ({ type: ACCEPT_UNFOLLOW, userId })
 
 export const setUsers = (users) => ({ type: SET_USERS, users })
 
@@ -79,5 +91,43 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const setTotalUsersCount = (totalCount) => ({ type: SET_TOTAL_USERS_COUNT, totalCount })
 
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
+
+export const toggleFollowingProgress = (following, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, following, userId })
+
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  }
+}
+
+export const follow = (id) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, id))
+    followAPI.unfollowing(id).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(acceptUnfollow(id))
+      }
+      dispatch(toggleFollowingProgress(false, id))
+    })
+  }
+}
+
+export const unfollow = (id) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, id))
+    followAPI.following(id).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(acceptFollow(id))
+      }
+      dispatch(toggleFollowingProgress(false, id))
+    })
+  }
+}
+
 
 export default FriendsReducer;

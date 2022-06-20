@@ -1,11 +1,10 @@
 import React from 'react';
 import userPhoto from '../../assets/images/user.webp';
 import { NavLink } from 'react-router-dom';
-import { followAPI } from '../../API/API';
 
-const User = ({ id, photos, followed, follow, unfollow, fullName, status, ...props }) => {
+const User = ({ id, photos, followed, follow, unfollow, fullName, status, followingInProgress }) => {
   return (
-    <div className='user' key={id}>
+    <div className='user'>
       <div className='user-inner'>
         <div className='user__present'>
           <NavLink className='user__img' to={`/Profile/${id}`}>
@@ -13,20 +12,18 @@ const User = ({ id, photos, followed, follow, unfollow, fullName, status, ...pro
           </NavLink>
           <div className="user__followed">
             {followed ?
-              <button onClick={() => {
-                followAPI.unfollowing(id).then(data => {
-                  if (data.resultCode === 0) {
-                    follow(id)
-                  }
-                })
-              }} >unfollow</button>
-              : <button onClick={() => {
-                followAPI.following(id).then(data => {
-                  if (data.resultCode === 0) {
-                    unfollow(id)
-                  }
-                })
-              }} >follow</button>}
+              <button
+                disabled={followingInProgress.some(uId => uId === id)}
+                onClick={() => {
+                  debugger
+                  unfollow(id)
+                }} >Unfollow</button>
+              : <button
+                disabled={followingInProgress.some(uId => uId === id)}
+                onClick={() => {
+                  debugger
+                  follow(id)
+                }} >Follow</button>}
           </div>
         </div>
         <div className='user__info'>

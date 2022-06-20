@@ -1,33 +1,20 @@
 import Friends from './Friends';
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow, toggleIsFetching } from '../../Redux/friends-Reducer';
+import {
+  acceptFollow, setCurrentPage, acceptUnfollow,
+  toggleFollowingProgress, getUsers, follow, unfollow
+} from '../../Redux/friends-Reducer';
 import React, { useEffect } from 'react';
-import { usersAPI } from '../../API/API';
 
-const FriendsContainer = ({ currentPage, pageSize, users, follow, unfollow, isFetching, ...props }) => {
+const FriendsContainer = ({ currentPage, pageSize, ...props }) => {
 
   useEffect(() => {
-    props.toggleIsFetching(true);
-    // if (props.users === 0) {
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
-      props.toggleIsFetching(false);
-      props.setUsers(data.items);
-      props.setTotalUsersCount(data.totalCount);
-    });
-    // } else {
-    //   props.toggleIsFetching(false);
-    // }
-
+    props.getUsers(currentPage, pageSize)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onPostChanged = (pageNumber) => {
-    props.toggleIsFetching(true)
-    props.setCurrentPage(pageNumber);
-    usersAPI.getUsers(pageNumber, pageSize).then(data => {
-      props.toggleIsFetching(false)
-      props.setUsers(data.items)
-    });
+    props.getUsers(pageNumber, pageSize)
   };
 
   // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
@@ -39,14 +26,10 @@ const FriendsContainer = ({ currentPage, pageSize, users, follow, unfollow, isFe
   }
 
   return <Friends
-    users={users}
-    follow={follow}
-    unfollow={unfollow}
     pages={pages}
-    currentPage={currentPage}
-    setCurrentPage={props.setCurrentPage}
     onPostChanged={onPostChanged}
-    isFetching={isFetching}
+    toggleFollowingProgress={toggleFollowingProgress}
+    {...props}
   />
 }
 
@@ -103,12 +86,12 @@ const mapStateToProps = (state) => {
     pageSize: state.FriendsPage.pageSize,
     totalUsersCount: state.FriendsPage.totalUsersCount,
     currentPage: state.FriendsPage.currentPage,
-    isFetching: state.FriendsPage.isFetching
+    isFetching: state.FriendsPage.isFetching,
+    followingInProgress: state.FriendsPage.followingInProgress
   }
 }
 
 export default connect(mapStateToProps, {
-  follow, unfollow, setUsers, setCurrentPage,
-  setTotalUsersCount, toggleIsFetching
+  acceptFollow, acceptUnfollow, setCurrentPage, toggleFollowingProgress, getUsers, follow, unfollow
 })
   (FriendsContainer);

@@ -74,6 +74,15 @@
     font-size: 20px;
     font-weight: 500;
     color: #000;
+    .menu__ava {
+      max-width: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
     &._active {
       color: #ff6464;
     }

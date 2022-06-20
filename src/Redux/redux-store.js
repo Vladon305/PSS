@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { combineReducers } from "redux";
 import dialogsReducer from './dialogs-Reducer';
 import FriendsReducer from "./friends-Reducer";
@@ -6,6 +6,8 @@ import postsReducer from "./posts-Reducer";
 import sideBarReducer from "./sideBar-Reducer";
 import worksReducer from "./works-Reducer";
 import profileReducer from "./profile-Reducer";
+import authReducer from "./auth-Reducer";
+import thunkMiddleware from "redux-thunk";
 
 let reducers = combineReducers({
   dialogsPage: dialogsReducer,
@@ -13,10 +15,11 @@ let reducers = combineReducers({
   works: worksReducer,
   sideBar: sideBarReducer,
   FriendsPage: FriendsReducer,
-  ProfilePage: profileReducer
+  ProfilePage: profileReducer,
+  auth: authReducer
 });
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 window.store = store;
 
 export default store;

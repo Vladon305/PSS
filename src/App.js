@@ -4,7 +4,7 @@ import BlogContainer from './components/Blog/BlogContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Footer from './components/Footer/Footer';
 import FriendsContainer from './components/Friends/FriendsContainer';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import SideBarContainer from './components/SideBar/SideBarContainer';
 import Works from './components/Works/Works';
@@ -13,7 +13,7 @@ const App = (props) => {
   return (
     <div className="App">
       <div className='wrapper'>
-        <Header />
+        <HeaderContainer />
         <div className='grid-wrapper'>
           <SideBarContainer />
           <div className='content'>

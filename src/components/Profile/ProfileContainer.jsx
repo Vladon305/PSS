@@ -2,8 +2,7 @@ import Profile from './Profile';
 import { connect } from 'react-redux';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { usersAPI } from '../../API/API';
-import { setUserProfile } from '../../Redux/profile-Reducer'
+import { getUserProfile } from '../../Redux/profile-Reducer'
 import { useEffect } from 'react';
 import { compose } from 'redux';
 
@@ -14,16 +13,10 @@ const ProfileContainer = (props) => {
     userId = 24521;
   }
 
-  const setUserProfile = (data) => props.setUserProfile(data);
-
   useEffect(() => {
-    // props.toggleIsFetching(true)
-    usersAPI.getUserProfile(userId).then(data => {
-      // props.toggleIsFetching(false);
-      setUserProfile(data);
-    });
+    props.getUserProfile(userId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userId]);
 
   return <Profile works={props.works} profile={props.profile} />
 
@@ -53,5 +46,5 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-  connect(mapStateToProps, { setUserProfile }),
+  connect(mapStateToProps, { getUserProfile }),
 )(ProfileContainer);

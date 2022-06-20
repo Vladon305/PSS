@@ -1,7 +1,8 @@
 import React from 'react';
+import userPhoto from '../../assets/images/user.webp';
 import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ userId, isAuth, login, ava }) => {
   return (
     <header className="header">
       <div className="container">
@@ -9,10 +10,18 @@ const Header = () => {
           <div className="header__menu menu">
             <nav className="menu__body">
               <ul className="menu__list">
-                <li><NavLink to="/" className="menu__link">Page</NavLink></li>
-                <li><NavLink to="/Works" className="menu__link">Works</NavLink></li>
-                <li><NavLink to="/Blog" className="menu__link">Blog</NavLink></li>
-                <li><NavLink to="/Dialogs" className="menu__link">Dialogs</NavLink></li>
+                <li>{isAuth & ava
+                  ? <NavLink to={`/Profile/${userId}`} className="menu__link">
+                    <div className='menu__ava'><img src={ava} alt="ava" /></div>
+                  </NavLink>
+                  : <NavLink to={`/Profile/${userId}`} className="menu__link">
+                    <div className='menu__ava'><img src={userPhoto} alt="ava" /></div>
+                  </NavLink>}
+                </li>
+                <li>{isAuth
+                  ? <p className='menu__link'>{login}</p>
+                  : <NavLink to="/Login" className="menu__link">Login</NavLink>}
+                </li>
               </ul>
             </nav>
           </div>

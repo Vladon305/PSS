@@ -22,12 +22,18 @@ export const usersAPI = {
 
 export const followAPI = {
   following: async (userId) => {
-    debugger
     const response = await instance.post(`follow/${userId}`);
     return response.data;
   },
   unfollowing: async (userId) => {
     const response = await instance.delete(`follow/${userId}`);
+    return response.data;
+  }
+}
+
+export const authAPI = {
+  getAuthUser: async () => {
+    const response = await instance.get(`auth/me`);
     return response.data;
   }
 }
