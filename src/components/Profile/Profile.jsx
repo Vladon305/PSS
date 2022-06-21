@@ -1,10 +1,10 @@
 import React from 'react';
 import Preloader from '../common/Preloader/Preloader';
 import Work from '../Works/Work';
-import AboutUserContainer from './AboutUserContainer';
+import AboutUserContainer from './AboutUser/AboutUserContainer';
 import RecentPostsContainer from './RecentPostsContainer';
 
-const Profile = ({ works, profile, ...props }) => {
+const Profile = ({ works, profile }) => {
 
   if (!profile) {
     return <Preloader />

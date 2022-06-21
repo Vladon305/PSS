@@ -7,32 +7,32 @@ import MenuIcon from './MenuIcon';
 const SideBarContainer = (props) => {
 
   const [SideBarState, ChangeState] = useState({
-    activeObgect: null,
+    activeObject: null,
     MenuIcon: <MenuIcon />,
     SideBar: <SideBar />
   });
   const toggleActive = () => {
-    if (!SideBarState.activeObgect) {
-      ChangeState({ ...SideBarState, activeObgect: SideBarState.MenuIcon })
+    if (!SideBarState.activeObject) {
+      ChangeState({ ...SideBarState, activeObject: SideBarState.MenuIcon })
     } else {
-      ChangeState({ ...SideBarState, activeObgect: null })
+      ChangeState({ ...SideBarState, activeObject: null })
     }
   };
   const toggleActiveStylesInSideBar = () => {
-    if (SideBarState.MenuIcon === SideBarState.activeObgect) {
+    if (SideBarState.MenuIcon === SideBarState.activeObject) {
       return 'SideBar _active'
     } else {
       return 'SideBar'
     }
   }
   const toggleActiveStylesInMenu = () => {
-    if (SideBarState.MenuIcon === SideBarState.activeObgect) {
+    if (SideBarState.MenuIcon === SideBarState.activeObject) {
       return 'menu-icon icon-menu _active'
     } else {
       return 'menu-icon icon-menu'
     }
   }
-  if (SideBarState.activeObgect) {
+  if (SideBarState.activeObject) {
     const body = document.querySelector("body")
     body.classList.add("_lock")
   } else {

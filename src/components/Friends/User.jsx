@@ -14,16 +14,10 @@ const User = ({ id, photos, followed, follow, unfollow, fullName, status, follow
             {followed ?
               <button
                 disabled={followingInProgress.some(uId => uId === id)}
-                onClick={() => {
-                  debugger
-                  unfollow(id)
-                }} >Unfollow</button>
+                onClick={() => { unfollow(id) }} >Unfollow</button>
               : <button
                 disabled={followingInProgress.some(uId => uId === id)}
-                onClick={() => {
-                  debugger
-                  follow(id)
-                }} >Follow</button>}
+                onClick={() => { follow(id) }} >Follow</button>}
           </div>
         </div>
         <div className='user__info'>

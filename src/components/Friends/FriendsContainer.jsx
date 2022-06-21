@@ -5,6 +5,8 @@ import {
   toggleFollowingProgress, getUsers, follow, unfollow
 } from '../../Redux/friends-Reducer';
 import React, { useEffect } from 'react';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../../HOCs/withAuthRedirect';
 
 const FriendsContainer = ({ currentPage, pageSize, ...props }) => {
 
@@ -29,6 +31,8 @@ const FriendsContainer = ({ currentPage, pageSize, ...props }) => {
     pages={pages}
     onPostChanged={onPostChanged}
     toggleFollowingProgress={toggleFollowingProgress}
+    currentPage={currentPage}
+    pageSize={pageSize}
     {...props}
   />
 }
@@ -91,7 +95,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  acceptFollow, acceptUnfollow, setCurrentPage, toggleFollowingProgress, getUsers, follow, unfollow
-})
+export default compose(
+  withAuthRedirect,
+  connect(mapStateToProps, {
+    acceptFollow, acceptUnfollow, setCurrentPage,
+    toggleFollowingProgress, getUsers, follow, unfollow
+  }))
   (FriendsContainer);

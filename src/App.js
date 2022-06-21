@@ -5,6 +5,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Footer from './components/Footer/Footer';
 import FriendsContainer from './components/Friends/FriendsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import SideBarContainer from './components/SideBar/SideBarContainer';
 import Works from './components/Works/Works';
@@ -23,6 +24,7 @@ const App = (props) => {
               <Route path='/Blog' element={<BlogContainer />} />
               <Route path='/Dialogs' element={<DialogsContainer />} />
               <Route path='/Friends' element={<FriendsContainer />} />
+              <Route path='/Login' element={<Login />} />
             </Routes>
           </div>
         </div>

@@ -58,6 +58,7 @@
 
   .content {
     grid-area: c;
+    position: relative;
     @media (max-width: $md3) {
       transform: translateX(-50px);
     }

@@ -1,7 +1,7 @@
 import { followAPI, usersAPI } from "../API/API";
 
 const ACCEPT_FOLLOW = 'ACCEPT_FOLLOW';
-const ACCEPT_UNFOLLOW = 'ACCEPT_FOLLOW';
+const ACCEPT_UNFOLLOW = 'ACCEPT_UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
@@ -67,7 +67,6 @@ const FriendsReducer = (state = initialState, action) => {
       }
 
     case TOGGLE_IS_FOLLOWING_PROGRESS:
-      debugger
       return {
         ...state,
         followingInProgress: action.following
@@ -108,9 +107,9 @@ export const getUsers = (currentPage, pageSize) => {
 export const follow = (id) => {
   return (dispatch) => {
     dispatch(toggleFollowingProgress(true, id))
-    followAPI.unfollowing(id).then(data => {
+    followAPI.following(id).then(data => {
       if (data.resultCode === 0) {
-        dispatch(acceptUnfollow(id))
+        dispatch(acceptFollow(id))
       }
       dispatch(toggleFollowingProgress(false, id))
     })
@@ -120,9 +119,9 @@ export const follow = (id) => {
 export const unfollow = (id) => {
   return (dispatch) => {
     dispatch(toggleFollowingProgress(true, id))
-    followAPI.following(id).then(data => {
+    followAPI.unfollowing(id).then(data => {
       if (data.resultCode === 0) {
-        dispatch(acceptFollow(id))
+        dispatch(acceptUnfollow(id))
       }
       dispatch(toggleFollowingProgress(false, id))
     })

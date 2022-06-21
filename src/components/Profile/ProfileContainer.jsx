@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getUserProfile } from '../../Redux/profile-Reducer'
 import { useEffect } from 'react';
 import { compose } from 'redux';
+// import { withAuthRedirect } from '../../HOCs/withAuthRedirect';
 
 const ProfileContainer = (props) => {
 
@@ -46,5 +47,6 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
+  // withAuthRedirect,
   connect(mapStateToProps, { getUserProfile }),
 )(ProfileContainer);
