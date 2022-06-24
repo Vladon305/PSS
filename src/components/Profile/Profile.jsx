@@ -4,7 +4,7 @@ import Work from '../Works/Work';
 import AboutUserContainer from './AboutUser/AboutUserContainer';
 import RecentPostsContainer from './RecentPostsContainer';
 
-const Profile = ({ works, profile }) => {
+const Profile = ({ works, profile, status }) => {
 
   if (!profile) {
     return <Preloader />

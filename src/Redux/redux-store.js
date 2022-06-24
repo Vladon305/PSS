@@ -1,7 +1,7 @@
 import { applyMiddleware, compose, createStore } from "redux";
 import { combineReducers } from "redux";
 import dialogsReducer from './dialogs-Reducer';
-import FriendsReducer from "./friends-Reducer";
+import friendsReducer from "./friends-Reducer";
 import postsReducer from "./posts-Reducer";
 import sideBarReducer from "./sideBar-Reducer";
 import worksReducer from "./works-Reducer";
@@ -14,7 +14,7 @@ let reducers = combineReducers({
   posts: postsReducer,
   works: worksReducer,
   sideBar: sideBarReducer,
-  FriendsPage: FriendsReducer,
+  FriendsPage: friendsReducer,
   ProfilePage: profileReducer,
   auth: authReducer
 });

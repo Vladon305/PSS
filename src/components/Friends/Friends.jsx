@@ -3,9 +3,10 @@ import User from './User';
 import Preloader from '../common/Preloader/Preloader';
 
 
-const Friends = ({ pages, currentPage, isFetching, users, follow, unfollow, followingInProgress, toggleFollowingProgress, ...props }) => {
+const Friends = ({ pages, currentPage, setCurrentPage, isFetching, users, follow, unfollow, followingInProgress, toggleFollowingProgress, ...props }) => {
   let onPageChange = (p) => {
     props.onPostChanged(p)
+    setCurrentPage(p)
   }
   return (
     <div className='Friends'>
@@ -15,7 +16,7 @@ const Friends = ({ pages, currentPage, isFetching, users, follow, unfollow, foll
             return <span
               className={currentPage === p ? 'selectedPage' : null}
               key={p}
-              onClick={(p) => {
+              onClick={(e) => {
                 onPageChange(p);
               }}>{p}</span>
           })}

@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { useState } from 'react';
 import React from 'react';
 import MenuIcon from './MenuIcon';
+import { setProfileLink } from '../../Redux/sideBar-Reducer';
 
-const SideBarContainer = (props) => {
+const SideBarContainer = ({ sideBar, userId, setProfileLink }) => {
 
   const [SideBarState, ChangeState] = useState({
     activeObject: null,
@@ -40,16 +41,23 @@ const SideBarContainer = (props) => {
     body.classList.remove("_lock")
   }
   return <>
-    <MenuIcon toggleActive={toggleActive} toggleActiveStyles={toggleActiveStylesInMenu} />
-    < SideBar sideBar={props.sideBar} toggleActiveStyles={toggleActiveStylesInSideBar} />
+    <MenuIcon
+      toggleActive={toggleActive}
+      toggleActiveStyles={toggleActiveStylesInMenu} />
+    < SideBar
+      sideBar={sideBar}
+      toggleActiveStyles={toggleActiveStylesInSideBar}
+      setProfileLink={setProfileLink}
+      userId={userId} />
   </>
 
 }
 
 const mapStateToProps = (state) => {
   return {
-    sideBar: state.sideBar
+    sideBar: state.sideBar,
+    userId: state.auth.userId
   }
 }
 
-export default connect(mapStateToProps)(SideBarContainer);
+export default connect(mapStateToProps, setProfileLink)(SideBarContainer);

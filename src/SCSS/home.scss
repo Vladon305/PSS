@@ -68,6 +68,30 @@
     flex: 0 1 auto;
   }
 
+  .profile__status {
+    border-radius: 25px;
+    border: 2px solid #deecf0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-weight: 400;
+      font-size: 24px;
+      padding: 11px;
+      min-width: 100px;
+      display: block;
+      min-height: 40px;
+    }
+    input {
+      font-weight: 400;
+      font-size: 24px;
+      padding: 11px;
+      min-width: 100px;
+      display: block;
+      min-height: 40px;
+    }
+  }
+
   // .preview__btn
 
   &__btn {

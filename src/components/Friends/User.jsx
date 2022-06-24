@@ -8,7 +8,7 @@ const User = ({ id, photos, followed, follow, unfollow, fullName, status, follow
       <div className='user-inner'>
         <div className='user__present'>
           <NavLink className='user__img' to={`/Profile/${id}`}>
-            <img src={photos != null ? photos : userPhoto} alt='user' />
+            <img src={photos ? photos : userPhoto} alt='user' />
           </NavLink>
           <div className="user__followed">
             {followed ?

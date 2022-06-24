@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Link = (props) => {
+const Link = ({ link, page }) => {
+
   return (
-    <NavLink to={props.link} className='Link'>
-      {props.page}
+    <NavLink to={link} className='Link'>
+      {page}
     </NavLink>
   );
 }

@@ -8,7 +8,7 @@ import React, { useEffect } from 'react';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../HOCs/withAuthRedirect';
 
-const FriendsContainer = ({ currentPage, pageSize, ...props }) => {
+const FriendsContainer = ({ currentPage, setCurrentPage, pageSize, ...props }) => {
 
   useEffect(() => {
     props.getUsers(currentPage, pageSize)
@@ -32,6 +32,7 @@ const FriendsContainer = ({ currentPage, pageSize, ...props }) => {
     onPostChanged={onPostChanged}
     toggleFollowingProgress={toggleFollowingProgress}
     currentPage={currentPage}
+    setCurrentPage={setCurrentPage}
     pageSize={pageSize}
     {...props}
   />
