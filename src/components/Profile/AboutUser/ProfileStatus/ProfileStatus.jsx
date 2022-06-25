@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 
 const ProfileStatus = ({ status, updateUserStatus }) => {
@@ -20,6 +21,11 @@ const ProfileStatus = ({ status, updateUserStatus }) => {
     setLocalStatus(e.currentTarget.value)
   }
 
+  useEffect(() => {
+    if (localStatus !== status) {
+      setLocalStatus(status)
+    }
+  }, [localStatus])
   return (
     // <div className="preview__text text">{!aboutMe ? 'I`m creative developer' : aboutMe}</div>
     <>

@@ -2,7 +2,7 @@ import React from 'react';
 import userPhoto from '../../assets/images/user.webp';
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ userId, isAuth, login, ava }) => {
+const Header = ({ userId, isAuth, login, ava, logout }) => {
   return (
     <header className="header">
       <div className="container">
@@ -19,7 +19,7 @@ const Header = ({ userId, isAuth, login, ava }) => {
                   </NavLink>}
                 </li>
                 <li>{isAuth
-                  ? <p className='menu__link'>{login}</p>
+                  ? <p className='menu__link'>{login}</p> && <button onClick={logout}>Log out</button>
                   : <NavLink to="/Login" className="menu__link">Login</NavLink>}
                 </li>
               </ul>

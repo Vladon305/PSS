@@ -1,41 +1,19 @@
 import React from 'react';
+import { reduxForm, Field } from 'redux-form';
 
-const AddPostForm = (props) => {
-
-  let newTitleElement = React.createRef();
-  let newCategoryElement = React.createRef();
-  let newTextElement = React.createRef();
-
-
-
-  let postChange = () => {
-    let title = newTitleElement.current.value;
-    let category = newCategoryElement.current.value;
-    let text = newTextElement.current.value;
-
-    props.updateNewPostText(title, category, text);
-  }
-  // let addPost = () => {
-  //   props.dispatch(addPostActionCreator());
-  // }
-
-  // let onPostChange = () => {
-
-  //   let title = newTitleElement.current.value;
-  //   let category = newCategoryElement.current.value;
-  //   let text = newTextElement.current.value;
-
-  //   props.dispatch(updateNewPostTextActionCreator(title, category, text));
-  // }
+const AddPostForm = ({ handleSubmit }) => {
   return (
-    <div className='AddPostForm'>
-      <textarea ref={newTitleElement} onChange={postChange} value={props.newValue.newPostTitle} />
-      <textarea ref={newCategoryElement} onChange={postChange} value={props.newValue.newPostCategory} />
-      <textarea ref={newTextElement} onChange={postChange} value={props.newValue.newPostText} />
-
-      <button onClick={props.addPost}>Add post</button>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div className='AddPostForm'>
+        <div><Field component={'input'} name='addCategory' placeholder={'Add category'} /></div>
+        <div><Field component={'input'} name='addTitle' placeholder={'Add title'} /></div>
+        <div><Field component={'input'} name='addText' placeholder={'Add text'} /></div>
+        <button>Add post</button>
+      </div>
+    </form>
   );
 }
 
-export default AddPostForm;
+export default reduxForm({
+  form: 'addPostForm'
+})(AddPostForm);

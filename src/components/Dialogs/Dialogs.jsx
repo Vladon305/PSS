@@ -1,32 +1,25 @@
 import React from 'react';
 import DialogsItem from './DialogItem';
 import Massage from './Massage';
+import { reduxForm, Field } from 'redux-form';
 
-const Dialogs = (props) => {
+const Dialogs = ({ dialogs, massages, sendMassage }) => {
 
-  let dialogsElement = props.state.dialogs.map(d => <DialogsItem name={d.name} id={d.id} key={d.id} />)
-  let massagesElement = props.state.massages.map(m => <Massage massage={m.massage} key={m.id} />)
-
-  let onSendMassageClick = () => {
-    props.sendMassage();
+  let addNewMassage = (values) => {
+    sendMassage(values.newMassageBody);
   }
 
-  let onNewMassageChange = (e) => {
-    let body = e.target.value;
-    props.updateNewMassageBody(body)
-  }
   return (
-    <div className="Diadlogs">
+    <div className="Dialogs">
       <div className="container">
         <div className='dialogs'>
           <div className='dialogsItems'>
-            {dialogsElement}
+            {dialogs.map(d => <DialogsItem name={d.name} id={d.id} key={d.id} />)}
           </div>
           <div className='massages'>
-            <div className='massages-inner'>{massagesElement}</div>
+            <div className='massages-inner'>{massages.map(m => <Massage massage={m.massage} key={m.id} />)}</div>
             <div className='sendMassage'>
-              <div className='textarea'><textarea placeholder='Enter your massage' value={props.state.newMassageBody} onChange={onNewMassageChange}></textarea></div>
-              <div><button onClick={onSendMassageClick}>Send</button> </div>
+              <AddMassageFormRedux onSubmit={addNewMassage} />
             </div>
           </div>
         </div>
@@ -34,5 +27,20 @@ const Dialogs = (props) => {
     </div>
   );
 }
+
+const AddMassageForm = ({ handleSubmit }) => {
+  return <form onSubmit={handleSubmit}>
+    <div className='textarea'>
+      <Field component={'input'} name='newMassageBody' placeholder='Enter your massage' />
+    </div>
+    <div>
+      <button>Send</button>
+    </div>
+  </form>
+}
+
+const AddMassageFormRedux = reduxForm({
+  form: 'dialogAddMassageForm'
+})(AddMassageForm)
 
 export default Dialogs;

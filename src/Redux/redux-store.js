@@ -8,6 +8,8 @@ import worksReducer from "./works-Reducer";
 import profileReducer from "./profile-Reducer";
 import authReducer from "./auth-Reducer";
 import thunkMiddleware from "redux-thunk";
+import { reducer as formReducer } from 'redux-form'
+import appReducer from "./app-Reducer";
 
 let reducers = combineReducers({
   dialogsPage: dialogsReducer,
@@ -16,7 +18,9 @@ let reducers = combineReducers({
   sideBar: sideBarReducer,
   FriendsPage: friendsReducer,
   ProfilePage: profileReducer,
-  auth: authReducer
+  auth: authReducer,
+  form: formReducer,
+  app: appReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

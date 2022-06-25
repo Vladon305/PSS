@@ -1,6 +1,14 @@
-import AddPostForm from './AddPostForm';
+import AddPostFormRedux from './AddPostForm';
 import { connect } from "react-redux";
-import { addPost, updateNewPostText } from '../../Redux/posts-Reducer';
+import { addPost } from '../../Redux/posts-Reducer';
+
+const AddPostFormContainer = (props) => {
+  const addNewPost = ({ addTitle, addCategory, addText }) => {
+    props.addPost(addTitle, addCategory, addText)
+  }
+
+  return <AddPostFormRedux onSubmit={addNewPost} />
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -8,9 +16,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const AddPostFormContainer = connect(mapStateToProps, {
-  addPost,
-  updateNewPostText
-})(AddPostForm);
-
-export default AddPostFormContainer;
+export default connect(mapStateToProps, { addPost })(AddPostFormContainer);;

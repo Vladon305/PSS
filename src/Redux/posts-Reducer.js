@@ -1,5 +1,4 @@
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 let initialState = {
   posts: [{
@@ -22,12 +21,7 @@ let initialState = {
     data: '12 Feb 2020 ',
     category: 'Figma, Icon Design',
     text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
-  }],
-  newValue: {
-    newPostTitle: 'Add title',
-    newPostCategory: 'Add category',
-    newPostText: 'Add text'
-  }
+  }]
 };
 
 const postsReducer = (state = initialState, action) => {
@@ -43,41 +37,22 @@ const postsReducer = (state = initialState, action) => {
       };
       let newPost = {
         id: getNewId(),
-        title: state.newValue.newPostTitle,
+        title: action.title,
         data: output,
-        category: state.newValue.newPostCategory,
-        text: state.newValue.newPostText
+        category: action.category,
+        text: action.text
       }
       return {
         ...state,
-        newValue: {
-          ...state.newValue,
-          newPostTitle: '',
-          newPostCategory: '',
-          newPostText: ''
-        },
         posts: [...state.posts, { ...newPost }]
       }
-    case UPDATE_NEW_POST_TEXT:
-      return {
-        ...state,
-        newValue: {
-          ...state.newValue,
-          newPostTitle: action.newTitle,
-          newPostCategory: action.newCategory,
-          newPostText: action.newText
-        }
-      }
-
     default:
       return state;
   }
 }
 
 
-export const addPost = () => ({ type: ADD_POST });
-export const updateNewPostText = (title, category, text) =>
-  ({ type: UPDATE_NEW_POST_TEXT, newTitle: title, newCategory: category, newText: text })
+export const addPost = (title, category, text) => ({ type: ADD_POST, title, category, text })
 
 
 export default postsReducer;

@@ -1,30 +1,39 @@
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { getUserProfile, getUserStatus } from '../../Redux/profile-Reducer'
 import { useEffect } from 'react';
 import { compose } from 'redux';
 // import { withAuthRedirect } from '../../HOCs/withAuthRedirect';
 
-const ProfileContainer = (props) => {
+const ProfileContainer = ({ authorizedUserId, getUserProfile, getUserStatus, works, profile, status, updateUserStatus }) => {
 
   let { userId } = useParams();
-  if (!userId) {
-    userId = 24521;
-  }
+  let redirect = false
 
   useEffect(() => {
-    props.getUserProfile(userId)
-    props.getUserStatus(userId)
+    getUserProfile(userId)
+    getUserStatus(userId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
+  if (!userId) {
+    userId = authorizedUserId;
+    if (userId) {
+      return redirect = true
+    }
+  }
+
+  if (redirect) {
+    return <Navigate to={'/Friends'} />
+  }
+
   return <Profile
-    works={props.works}
-    profile={props.profile}
-    status={props.status}
-    updateUserStatus={props.updateUserStatus} />
+    works={works}
+    profile={profile}
+    status={status}
+    updateUserStatus={updateUserStatus} />
 
 }
 
@@ -48,7 +57,8 @@ const mapStateToProps = (state) => {
   return {
     works: state.works,
     profile: state.ProfilePage.profile,
-    status: state.ProfilePage.status
+    status: state.ProfilePage.status,
+    authorizedUserId: state.auth.authorizedUserId
   }
 }
 
