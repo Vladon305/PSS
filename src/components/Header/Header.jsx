@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import userPhoto from '../../assets/images/user.webp';
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ userId, isAuth, login, ava, logout }) => {
+const Header = ({ userId, isAuth, login, ava, logout, condition }) => {
+  useEffect(() => {
+    condition()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuth])
   return (
     <header className="header">
       <div className="container">

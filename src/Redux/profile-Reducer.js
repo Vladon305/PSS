@@ -1,7 +1,7 @@
 import { profileAPI } from "../API/API";
 
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_USER_STATUS = 'SET_USER_STATUS';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_USER_STATUS = 'profile/SET_USER_STATUS';
 
 let initialState = {
   profile: null,
@@ -28,30 +28,29 @@ const profileReducer = (state = initialState, action) => {
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
 export const getUserProfile = (userId) => {
-  return (dispatch) => {
-    profileAPI.getUserProfile(userId).then(data => {
-      dispatch(setUserProfile(data))
-    })
+  return async (dispatch) => {
+    const data = await profileAPI.getUserProfile(userId)
+    dispatch(setUserProfile(data))
   }
 }
 
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status })
 
 export const getUserStatus = (userId) => {
-  return (dispatch) => {
-    profileAPI.getUserStatus(userId).then(data => {
+  return async (dispatch) => {
+    const data = await profileAPI.getUserStatus(userId)
+    if (data.resultCode === 0) {
       dispatch(setUserStatus(data))
-    })
+    }
   }
 }
 
 export const updateUserStatus = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status).then(data => {
-      if (data.resultCode === 0) {
-        dispatch(setUserStatus(data))
-      }
-    })
+  return async (dispatch) => {
+    const data = await profileAPI.updateStatus(status)
+    if (data.resultCode === 0) {
+      dispatch(setUserStatus(data))
+    }
   }
 }
 

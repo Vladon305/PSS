@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { login } from '../../Redux/auth-Reducer';
 import { Navigate } from 'react-router-dom';
+import { createField } from '../common/FormsControls/FormsControls';
 
-const Login = ({ login, userId, isAuth }) => {
+const Login = ({ login, userId, isAuth, condition }) => {
 
   const onSubmit = ({ email, password, rememberMe }) => {
     login(email, password, rememberMe);
+    condition()
   }
 
   if (isAuth) {
@@ -24,9 +26,9 @@ const Login = ({ login, userId, isAuth }) => {
 
 const LoginForm = ({ handleSubmit }) => {
   return <form onSubmit={handleSubmit}>
-    <div><Field placeholder='Email' name='email' component={'input'} /></div>
-    <div><Field placeholder='Password' name='password' component={'input'} type={'password'} /></div>
-    <div><Field type={'checkbox'} name='remember me' component={'input'} />Remember me</div>
+    {createField('Email', 'email', [], 'input')}
+    {createField('Password', 'password', [], 'input', { type: 'password' })}
+    {createField(null, 'remember me', [], 'input', { type: 'checkbox' }, 'Remember me')}
     <div><button>Login</button></div>
   </form>
 }

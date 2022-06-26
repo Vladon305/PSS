@@ -1,9 +1,10 @@
 import SideBar from './SideBar';
 import { connect } from "react-redux";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import MenuIcon from './MenuIcon';
 import { setProfileLink } from '../../Redux/sideBar-Reducer';
+import { Navigate } from 'react-router-dom';
 
 const SideBarContainer = ({ sideBar, userId, setProfileLink }) => {
 
@@ -33,12 +34,18 @@ const SideBarContainer = ({ sideBar, userId, setProfileLink }) => {
       return 'menu-icon icon-menu'
     }
   }
-  if (SideBarState.activeObject) {
+
+  useEffect(() => {
     const body = document.querySelector("body")
-    body.classList.add("_lock")
-  } else {
-    const body = document.querySelector("body")
-    body.classList.remove("_lock")
+    if (SideBarState.activeObject) {
+      body.classList.add("_lock")
+    } else {
+      body.classList.remove("_lock")
+    }
+  }, [SideBarState.activeObject])
+
+  if (!userId) {
+    return <Navigate to={'/Login'} />
   }
   return <>
     <MenuIcon

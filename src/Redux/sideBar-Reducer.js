@@ -1,4 +1,4 @@
-const SET_PROFILE_LINK = 'SET_PROFILE_LINK';
+const SET_PROFILE_LINK = 'sideBar/SET_PROFILE_LINK';
 
 let initialState = [
   { page: 'Profile', link: '/Profile/' },
@@ -11,7 +11,6 @@ let initialState = [
 const sideBarReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROFILE_LINK:
-      debugger
       let profileLink = state[0].link
       return {
         ...state,

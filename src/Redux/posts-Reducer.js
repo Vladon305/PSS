@@ -1,4 +1,4 @@
-const ADD_POST = 'ADD-POST';
+const ADD_POST = 'posts/ADD-POST';
 
 let initialState = {
   posts: [{
@@ -29,7 +29,7 @@ const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
       let date = new Date();
-      let output = String(date.getDate()).padStart(2, '0') + ' ' + String(date.getMonth()).padStart(2, '0') + ' ' + date.getFullYear();
+      let output = String(date.getDate()).padStart(2, '0') + ' ' + String(date.getMonth() + 1).padStart(2, '0') + ' ' + date.getFullYear();
       let getNewId = () => {
         let posts = state.posts;
         let lastPost = posts[posts.length - 1];

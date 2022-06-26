@@ -10,11 +10,11 @@ const instance = axios.create({
 });
 
 export const usersAPI = {
-  getUsers: async (currentPage = 1, pageSize = 10) => {
-    const response = await instance.get(`users?page=${currentPage}&count=${pageSize}`);
+  getUsers: async (page = 1, pageSize = 10) => {
+    const response = await instance.get(`users?page=${page}&count=${pageSize}`);
     return response.data;
   },
-  getUserProfile: async (userId = 24521) => {
+  getUserProfile: async (userId) => {
     console.warn('obsolete method. Please profileAPI object')
     return profileAPI.getUserProfile(userId);
   }
@@ -46,7 +46,6 @@ export const authAPI = {
     return response.data;
   }
 }
-
 
 export const profileAPI = {
   getUserProfile: async (userId = 24521) => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import BlogContainer from './components/Blog/BlogContainer';
@@ -11,23 +11,33 @@ import Login from './components/Login/Login';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import SideBarContainer from './components/SideBar/SideBarContainer';
 import Works from './components/Works/Works';
-import { getAuthUser } from './Redux/auth-Reducer';
+import { initializeApp } from './Redux/app-Reducer';
 
 class App extends React.Component {
-
   componentDidMount() {
-    this.props.getAuthUser()
+    this.props.initializeApp()
+    this.condition()
+  }
+  state = {
+    sideBar: this.props.isAuth
+  }
+  condition = () => {
+    if (this.props.isAuth) {
+      this.setState({ sideBar: true })
+    } else {
+      this.setState({ sideBar: false })
+    }
   }
   render() {
     if (!this.props.initialized) {
-      <Preloader />
+      return <Preloader />
     }
     return (
       <div className="App">
         <div className='wrapper'>
-          <HeaderContainer />
-          <div className='grid-wrapper'>
-            <SideBarContainer />
+          <HeaderContainer deleteSideBar={this.deleteSideBar} condition={this.condition} />
+          <div className={this.state.sideBar === true ? 'grid-wrapper' : 'grid-wrapper-without-sideBar'}>
+            {this.props.userId ? <SideBarContainer /> : <></>}
             <div className='content'>
               <Routes>
                 <Route path='/Profile/:userId' element={<ProfileContainer />} />
@@ -35,19 +45,21 @@ class App extends React.Component {
                 <Route path='/Blog' element={<BlogContainer />} />
                 <Route path='/Dialogs' element={<DialogsContainer />} />
                 <Route path='/Friends' element={<FriendsContainer />} />
-                <Route path='/Login' element={<Login />} />
+                <Route path='/Login' element={<Login condition={this.condition} />} />
               </Routes>
             </div>
           </div>
           <Footer />
         </div>
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state) => ({
-  initialized: state.app.initialized
+  initialized: state.app.initialized,
+  userId: state.auth.userId,
+  isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, { getAuthUser })(App);
+export default connect(mapStateToProps, { initializeApp })(App);

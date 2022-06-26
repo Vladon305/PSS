@@ -1,26 +1,25 @@
 import React from 'react';
 import User from './User';
 import Preloader from '../common/Preloader/Preloader';
+import Paginator from '../common/Paginator/Paginator';
 
 
-const Friends = ({ pages, currentPage, setCurrentPage, isFetching, users, follow, unfollow, followingInProgress, toggleFollowingProgress, ...props }) => {
+const Friends = ({
+  totalUsersCount, pageSize, onPostChanged,
+  page, setPage, isFetching,
+  users, follow, unfollow, followingInProgress }) => {
   let onPageChange = (p) => {
-    props.onPostChanged(p)
-    setCurrentPage(p)
+    onPostChanged(p)
+    setPage(p)
   }
   return (
     <div className='Friends'>
       <div className='container'>
-        <div className='pagination'>
-          {pages.map(p => {
-            return <span
-              className={currentPage === p ? 'selectedPage' : null}
-              key={p}
-              onClick={(e) => {
-                onPageChange(p);
-              }}>{p}</span>
-          })}
-        </div>
+        <Paginator
+          totalUsersCount={totalUsersCount}
+          pageSize={pageSize}
+          page={page}
+          onPageChange={onPageChange} />
 
         {isFetching ? <Preloader /> :
           users.map(u => <User

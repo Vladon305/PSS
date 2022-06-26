@@ -1,7 +1,7 @@
 import { authAPI } from "../API/API";
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_AUTH_USER_PROFILE = 'SET_AUTH_USER_PROFILE';
+const SET_USER_DATA = 'auth/SET_USER_DATA';
+const SET_AUTH_USER_PROFILE = 'auth/SET_AUTH_USER_PROFILE';
 
 let initialState = {
   userId: null,
@@ -32,30 +32,27 @@ export const setAuthUserData = (userId, login, email, isAuth) => ({ type: SET_US
 
 export const setAuthUserProfile = (data) => ({ type: SET_AUTH_USER_PROFILE, data })
 
-export const getAuthUser = () => (dispatch) => {
-  return authAPI.getAuthUser().then(data => {
-    if (data.resultCode === 0) {
-      let { id, login, email } = data.data;
-      dispatch(setAuthUserData(id, login, email, true))
-    }
-  })
+export const getAuthUser = () => async (dispatch) => {
+  const data = await authAPI.getAuthUser();
+  if (data.resultCode === 0) {
+    let { id, login, email } = data.data;
+    dispatch(setAuthUserData(id, login, email, true));
+  }
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-  authAPI.login(email, password, rememberMe).then(data => {
-    if (data.resultCode === 0) {
-      dispatch(getAuthUser())
-    }
-  })
+export const login = (email, password, rememberMe) => async (dispatch) => {
+  const data = await authAPI.login(email, password, rememberMe)
+  if (data.resultCode === 0) {
+    dispatch(getAuthUser())
+  }
 }
 
-export const logout = () => (dispatch) => {
-  authAPI.logout().then(data => {
-    if (data.resultCode === 0) {
-      dispatch(getAuthUser())
-      dispatch(setAuthUserData(null, null, null, false))
-    }
-  })
+export const logout = () => async (dispatch) => {
+  const data = await authAPI.logout()
+  if (data.resultCode === 0) {
+    dispatch(getAuthUser())
+    dispatch(setAuthUserData(null, null, null, false))
+  }
 }
 
 export default authReducer;

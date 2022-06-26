@@ -1,6 +1,6 @@
 import { getAuthUser } from './auth-Reducer';
 
-const INITIALIZED = 'INITIALIZED'
+const INITIALIZED = 'app/INITIALIZED'
 
 const initialState = {
   initialized: false
