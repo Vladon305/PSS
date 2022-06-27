@@ -8,7 +8,9 @@ const mapStateToProps = (state) => {
     fullName: state.ProfilePage.profile.fullName,
     ava: state.ProfilePage.profile.photos,
     status: state.ProfilePage.status,
-    initialized: state.app.initialized
+    initialized: state.app.initialized,
+    userId: state.auth.userId,
+    profileId: state.ProfilePage.profile.userId
   }
 }
 

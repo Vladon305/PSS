@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const ProfileStatus = ({ status, updateUserStatus }) => {
+const ProfileStatus = ({ status, updateUserStatus, userId, profileId }) => {
 
   const [editMode, changeEditMode] = useState(false)
 
@@ -30,12 +30,16 @@ const ProfileStatus = ({ status, updateUserStatus }) => {
   return (
     // <div className="preview__text text">{!aboutMe ? 'I`m creative developer' : aboutMe}</div>
     <>
-      {!editMode
-        ? <div className='profile__status'>
-          <span onClick={activateEditMode} >{localStatus || '---------'}</span>
-        </div>
+      {userId === profileId
+        ? !editMode
+          ? <div className='profile__status'>
+            <span onClick={activateEditMode} >{localStatus || '---------'}</span>
+          </div>
+          : <div className='profile__status'>
+            <input autoFocus={true} onBlur={deactivateEditMode} onChange={setValue} type="text" value={localStatus} />
+          </div>
         : <div className='profile__status'>
-          <input autoFocus={true} onBlur={deactivateEditMode} onChange={setValue} type="text" value={localStatus} />
+          <span>{localStatus || '---------'}</span>
         </div>}
     </>
   );
