@@ -39,9 +39,7 @@ export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status })
 export const getUserStatus = (userId) => {
   return async (dispatch) => {
     const data = await profileAPI.getUserStatus(userId)
-    if (data.resultCode === 0) {
-      dispatch(setUserStatus(data))
-    }
+    dispatch(setUserStatus(data))
   }
 }
 
@@ -49,7 +47,7 @@ export const updateUserStatus = (status) => {
   return async (dispatch) => {
     const data = await profileAPI.updateStatus(status)
     if (data.resultCode === 0) {
-      dispatch(setUserStatus(data))
+      dispatch(setUserStatus(status))
     }
   }
 }

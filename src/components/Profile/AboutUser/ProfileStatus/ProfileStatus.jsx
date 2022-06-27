@@ -26,7 +26,7 @@ const ProfileStatus = ({ status, updateUserStatus }) => {
       setLocalStatus(status)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [status])
   return (
     // <div className="preview__text text">{!aboutMe ? 'I`m creative developer' : aboutMe}</div>
     <>
