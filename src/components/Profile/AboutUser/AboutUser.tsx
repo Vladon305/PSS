@@ -1,9 +1,20 @@
-import React from 'react';
-import ProfileStatus from './ProfileStatus/ProfileStatus';
-import userPhoto from '../../../assets/images/user.webp';
-import Preloader from '../../common/Preloader/Preloader';
+import React from 'react'
+import ProfileStatus from './ProfileStatus/ProfileStatus'
+import userPhoto from '../../../assets/images/user.webp'
+import Preloader from '../../common/Preloader/Preloader'
+import { PhotosType } from '../../../types/types'
 
-const AboutUser = ({ fullName, aboutMe, ava, status, updateUserStatus, initialized, userId, profileId }) => {
+type PropsType = {
+  fullName: string
+  ava: PhotosType
+  status: string
+  initialized: boolean
+  userId: number
+  profileId: number
+  updateUserStatus: (newStatus: string) => void
+}
+
+const AboutUser: React.FC<PropsType> = ({ fullName, ava, status, updateUserStatus, initialized, userId, profileId }) => {
   return (
     <div className='AboutUser'>
       <section className="preview">
@@ -13,7 +24,6 @@ const AboutUser = ({ fullName, aboutMe, ava, status, updateUserStatus, initializ
             {initialized ?
               <ProfileStatus status={status} updateUserStatus={updateUserStatus} userId={userId} profileId={profileId} />
               : <Preloader />}
-            <div className="preview__text text">{!aboutMe ? 'I`m creative developer' : aboutMe}</div>
             <div className="preview__btn">
               <button className="btn">Download Resume</button>
             </div>
@@ -24,6 +34,6 @@ const AboutUser = ({ fullName, aboutMe, ava, status, updateUserStatus, initializ
         </div>
       </section >
     </div >
-  );
+  )
 }
-export default AboutUser;
+export default AboutUser

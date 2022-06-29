@@ -54,8 +54,9 @@ const SideBarContainer = ({ sideBar, userId, setProfileLink }) => {
     < SideBar
       sideBar={sideBar}
       toggleActiveStyles={toggleActiveStylesInSideBar}
-      setProfileLink={setProfileLink}
-      userId={userId} />
+    // setProfileLink={setProfileLink}
+    // userId={userId} 
+    />
   </>
 
 }
@@ -67,4 +68,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, setProfileLink)(SideBarContainer);
+export default connect(mapStateToProps, { setProfileLink })(SideBarContainer);

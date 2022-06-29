@@ -27,6 +27,9 @@ const ProfileContainer = ({ authorizedUserId, getUserProfile, getUserStatus, wor
   if (redirect) {
     return <Navigate to={'/Friends'} />
   }
+  // if (isAuth === false) {
+  //   return <Navigate to={'/Friends'} />
+  // }
 
   return <Profile
     works={works}
@@ -57,7 +60,8 @@ const mapStateToProps = (state) => {
     works: state.works,
     profile: state.ProfilePage.profile,
     status: state.ProfilePage.status,
-    authorizedUserId: state.auth.authorizedUserId
+    authorizedUserId: state.auth.userId,
+    // isAuth: state.auth.isAuth
   }
 }
 

@@ -1,5 +1,13 @@
 const ADD_POST = 'posts/ADD-POST';
 
+type PostType = {
+  id: number
+  title: string
+  data: string
+  category: string
+  text: string
+}
+
 let initialState = {
   posts: [{
     id: 1,
@@ -7,24 +15,27 @@ let initialState = {
     data: '12 Feb 2019 ',
     category: 'Express, Handlebars',
     text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
-  },
+  } as PostType,
   {
     id: 2,
     title: 'Making a design system from scratch',
     data: '12 Feb 2020 ',
     category: 'Design, Pattern',
     text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
-  },
+  } as PostType,
   {
     id: 3,
     title: 'Creating pixel perfect icons in Figma',
     data: '12 Feb 2020 ',
     category: 'Figma, Icon Design',
     text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
-  }]
+  } as PostType]
 };
 
-const postsReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState
+
+
+const postsReducer = (state = initialState, action: any): InitialStateType => {
 
   switch (action.type) {
     case ADD_POST:
@@ -51,8 +62,14 @@ const postsReducer = (state = initialState, action) => {
   }
 }
 
+type AddPostActionType = {
+  type: typeof ADD_POST
+  title: string
+  category: string
+  text: string
+}
 
-export const addPost = (title, category, text) => ({ type: ADD_POST, title, category, text })
+export const addPost = (title: string, category: string, text: string): AddPostActionType => ({ type: ADD_POST, title, category, text })
 
 
 export default postsReducer;

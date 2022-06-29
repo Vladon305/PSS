@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const ProfileStatus = ({ status, updateUserStatus, userId, profileId }) => {
+type PropsType = {
+  status: string
+  updateUserStatus: (newStatus: string) => void
+  userId: number
+  profileId: number
+}
+
+const ProfileStatus: React.FC<PropsType> = ({ status, updateUserStatus, userId, profileId }) => {
 
   const [editMode, changeEditMode] = useState(false)
 
@@ -17,7 +24,7 @@ const ProfileStatus = ({ status, updateUserStatus, userId, profileId }) => {
     updateUserStatus(localStatus)
   }
 
-  const setValue = (e) => {
+  const setValue = (e: ChangeEvent<HTMLInputElement>) => {
     setLocalStatus(e.currentTarget.value)
   }
 
@@ -33,7 +40,7 @@ const ProfileStatus = ({ status, updateUserStatus, userId, profileId }) => {
       {userId === profileId
         ? !editMode
           ? <div className='profile__status'>
-            <span onClick={activateEditMode} >{localStatus || '---------'}</span>
+            <span onDoubleClick={activateEditMode} >{localStatus || '---------'}</span>
           </div>
           : <div className='profile__status'>
             <input autoFocus={true} onBlur={deactivateEditMode} onChange={setValue} type="text" value={localStatus} />

@@ -26,7 +26,9 @@ let initialState = [{
   text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
 }];
 
-const worksReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState
+
+const worksReducer = (state = initialState, action: any): InitialStateType => {
   return state;
 }
 
