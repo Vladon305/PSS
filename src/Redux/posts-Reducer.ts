@@ -1,12 +1,6 @@
-const ADD_POST = 'posts/ADD-POST';
+import { PostType } from "../types/types"
 
-type PostType = {
-  id: number
-  title: string
-  data: string
-  category: string
-  text: string
-}
+const ADD_POST = 'posts/ADD-POST'
 
 let initialState = {
   posts: [{
@@ -30,20 +24,20 @@ let initialState = {
     category: 'Figma, Icon Design',
     text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
   } as PostType]
-};
+}
 
 type InitialStateType = typeof initialState
 
 
-const postsReducer = (state = initialState, action: any): InitialStateType => {
+const postsReducer = (state = initialState, action: ActionsType): InitialStateType => {
 
   switch (action.type) {
     case ADD_POST:
-      let date = new Date();
-      let output = String(date.getDate()).padStart(2, '0') + ' ' + String(date.getMonth() + 1).padStart(2, '0') + ' ' + date.getFullYear();
+      let date = new Date()
+      let output = String(date.getDate()).padStart(2, '0') + ' ' + String(date.getMonth() + 1).padStart(2, '0') + ' ' + date.getFullYear()
       let getNewId = () => {
-        let posts = state.posts;
-        let lastPost = posts[posts.length - 1];
+        let posts = state.posts
+        let lastPost = posts[posts.length - 1]
         return lastPost.id + 1
       };
       let newPost = {
@@ -58,9 +52,11 @@ const postsReducer = (state = initialState, action: any): InitialStateType => {
         posts: [...state.posts, { ...newPost }]
       }
     default:
-      return state;
+      return state
   }
 }
+
+type ActionsType = AddPostActionType
 
 type AddPostActionType = {
   type: typeof ADD_POST
@@ -72,4 +68,4 @@ type AddPostActionType = {
 export const addPost = (title: string, category: string, text: string): AddPostActionType => ({ type: ADD_POST, title, category, text })
 
 
-export default postsReducer;
+export default postsReducer

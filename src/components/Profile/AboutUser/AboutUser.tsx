@@ -1,5 +1,6 @@
 import React from 'react'
 import ProfileStatus from './ProfileStatus/ProfileStatus'
+// @ts-ignore
 import userPhoto from '../../../assets/images/user.webp'
 import Preloader from '../../common/Preloader/Preloader'
 import { PhotosType } from '../../../types/types'

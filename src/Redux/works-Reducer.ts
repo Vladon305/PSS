@@ -1,3 +1,5 @@
+import { WorkType } from '../types/types'
+
 let initialState = [{
   id: 1,
   title: 'Designing Dashboards',
@@ -24,12 +26,12 @@ let initialState = [{
   data: '2020',
   category: 'Dashboard',
   text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
-}];
+}] as Array<WorkType>
 
 type InitialStateType = typeof initialState
 
 const worksReducer = (state = initialState, action: any): InitialStateType => {
-  return state;
+  return state
 }
 
-export default worksReducer;
+export default worksReducer

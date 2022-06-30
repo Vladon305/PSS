@@ -1,6 +1,6 @@
-import { LinksType } from "../types/types";
+import { LinksType } from "../types/types"
 
-const SET_PROFILE_LINK = 'sideBar/SET_PROFILE_LINK';
+const SET_PROFILE_LINK = 'sideBar/SET_PROFILE_LINK'
 
 let initialState = [
   { page: 'Profile', link: '/Profile/' } as LinksType,
@@ -12,7 +12,7 @@ let initialState = [
 
 type InitialStateType = typeof initialState
 
-const sideBarReducer = (state = initialState, action: any): InitialStateType => {
+const sideBarReducer = (state = initialState, action: ActionsType): InitialStateType => {
   switch (action.type) {
     case SET_PROFILE_LINK:
       // let profileLink = state[0].link
@@ -25,6 +25,8 @@ const sideBarReducer = (state = initialState, action: any): InitialStateType => 
   }
 }
 
+type ActionsType = SetProfileLink
+
 type SetProfileLink = {
   type: typeof SET_PROFILE_LINK
   userId: number
@@ -32,4 +34,4 @@ type SetProfileLink = {
 
 export const setProfileLink = (userId: number): SetProfileLink => ({ type: SET_PROFILE_LINK, userId })
 
-export default sideBarReducer;
+export default sideBarReducer

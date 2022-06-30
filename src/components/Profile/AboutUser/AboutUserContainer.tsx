@@ -1,8 +1,12 @@
 import AboutUser from './AboutUser';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { updateUserStatus } from '../../../Redux/profile-Reducer'
 import { AppStateType } from '../../../Redux/redux-store';
 import { PhotosType } from '../../../types/types';
+
+const AboutUserContainer = (props: Props) => {
+  return <AboutUser {...props} />
+}
 
 type mapStateToPropsType = {
   fullName: string
@@ -11,10 +15,6 @@ type mapStateToPropsType = {
   initialized: boolean
   userId: number
   profileId: number
-}
-
-type MapDispatchToPropsType = {
-  updateUserStatus: (newStatus: string) => void
 }
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
@@ -32,4 +32,10 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
   }
 }
 
-export default connect<mapStateToPropsType, MapDispatchToPropsType>(mapStateToProps, { updateUserStatus })(AboutUser);
+const connector = connect(mapStateToProps, { updateUserStatus })
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+type Props = PropsFromRedux
+
+export default connector(AboutUserContainer);

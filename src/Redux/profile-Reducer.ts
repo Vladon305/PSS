@@ -1,17 +1,19 @@
-import { profileAPI } from "../API/API";
-import { ProfileType } from "../types/types";
+import { ThunkAction } from "redux-thunk"
+import { profileAPI } from "../API/API"
+import { ProfileType } from "../types/types"
+import { AppStateType } from './redux-store'
 
-const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
-const SET_USER_STATUS = 'profile/SET_USER_STATUS';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
+const SET_USER_STATUS = 'profile/SET_USER_STATUS'
 
 export type InitialStateType = typeof initialState
 
 let initialState = {
   profile: null as ProfileType | null,
   status: ''
-};
+}
 
-const profileReducer = (state = initialState, action: any): InitialStateType => {
+const profileReducer = (state = initialState, action: ActionsType): InitialStateType => {
   switch (action.type) {
     case SET_USER_PROFILE:
       return {
@@ -24,9 +26,13 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
         status: action.status
       }
     default:
-      return state;
+      return state
   }
 }
+
+type ActionsType = SetUserProfileActionType | SetUserStatusActionType | SetUserStatusActionType
+
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 
 type SetUserProfileActionType = {
   type: typeof SET_USER_PROFILE
@@ -49,15 +55,15 @@ type SetUserStatusActionType = {
 
 export const setUserStatus = (status: string): SetUserStatusActionType => ({ type: SET_USER_STATUS, status })
 
-export const getUserStatus = (userId: number) => {
-  return async (dispatch: any) => {
+export const getUserStatus = (userId: number): ThunkType => {
+  return async (dispatch) => {
     const data = await profileAPI.getUserStatus(userId)
     dispatch(setUserStatus(data))
   }
 }
 
-export const updateUserStatus = (status: string) => {
-  return async (dispatch: any) => {
+export const updateUserStatus = (status: string): ThunkType => {
+  return async (dispatch) => {
     const data = await profileAPI.updateStatus(status)
     if (data.resultCode === 0) {
       dispatch(setUserStatus(status))
@@ -66,4 +72,4 @@ export const updateUserStatus = (status: string) => {
 }
 
 
-export default profileReducer;
+export default profileReducer

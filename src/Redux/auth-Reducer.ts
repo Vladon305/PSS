@@ -1,7 +1,9 @@
-import { authAPI } from "../API/API";
+import { ThunkAction } from "redux-thunk"
+import { authAPI } from "../API/API"
+import { AppStateType } from "./redux-store"
 
-const SET_USER_DATA = 'auth/SET_USER_DATA';
-const SET_AUTH_USER_PROFILE = 'auth/SET_AUTH_USER_PROFILE';
+const SET_USER_DATA = 'auth/SET_USER_DATA'
+const SET_AUTH_USER_PROFILE = 'auth/SET_AUTH_USER_PROFILE'
 
 export type InitialStateType = typeof initialState
 
@@ -27,9 +29,13 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
         profile: action.data
       }
     default:
-      return state;
+      return state
   }
 }
+
+type ActionsType = SetAuthUserDataActionType | SetAuthUserProfile
+
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 
 type SetAuthUserDataActionPayloadType = {
   userId: number | null
@@ -53,22 +59,22 @@ type SetAuthUserProfile = {
 
 export const setAuthUserProfile = (data: any): SetAuthUserProfile => ({ type: SET_AUTH_USER_PROFILE, data })
 
-export const getAuthUser = () => async (dispatch: any) => {
+export const getAuthUser = (): ThunkType => async (dispatch) => {
   const data = await authAPI.getAuthUser();
   if (data.resultCode === 0) {
-    let { id, login, email } = data.data;
-    dispatch(setAuthUserData(id, login, email, true));
+    let { id, login, email } = data.data
+    dispatch(setAuthUserData(id, login, email, true))
   }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean): ThunkType => async (dispatch) => {
   const data = await authAPI.login(email, password, rememberMe)
   if (data.resultCode === 0) {
     dispatch(getAuthUser())
   }
 }
 
-export const logout = () => async (dispatch: any) => {
+export const logout = (): ThunkType => async (dispatch) => {
   const data = await authAPI.logout()
   if (data.resultCode === 0) {
     dispatch(getAuthUser())
@@ -76,4 +82,4 @@ export const logout = () => async (dispatch: any) => {
   }
 }
 
-export default authReducer;
+export default authReducer

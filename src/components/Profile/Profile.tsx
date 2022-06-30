@@ -1,10 +1,16 @@
-import React from 'react';
-import Preloader from '../common/Preloader/Preloader';
-import Work from '../Works/Work';
-import AboutUserContainer from './AboutUser/AboutUserContainer';
-import RecentPostsContainer from './RecentPostsContainer';
+import React from 'react'
+import { ProfileType, WorkType } from '../../types/types'
+import Preloader from '../common/Preloader/Preloader'
+import Work from '../Works/Work'
+import AboutUserContainer from './AboutUser/AboutUserContainer'
+import RecentPostsContainer from './RecentPostsContainer'
 
-const Profile = ({ works, profile }) => {
+type PropsType = {
+  works: Array<WorkType>
+  profile: ProfileType
+}
+
+const Profile: React.FC<PropsType> = ({ works, profile }) => {
 
   if (!profile) {
     return <Preloader />
@@ -26,7 +32,7 @@ const Profile = ({ works, profile }) => {
         </div>
       </main>
     </div>
-  );
+  )
 }
 
-export default Profile;
+export default Profile

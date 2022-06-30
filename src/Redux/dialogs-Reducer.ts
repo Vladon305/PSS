@@ -1,4 +1,4 @@
-const SEND_MASSAGE = 'dialogs/SEND_MASSAGE';
+const SEND_MASSAGE = 'dialogs/SEND_MASSAGE'
 
 export type InitialStateType = typeof initialState
 
@@ -28,33 +28,35 @@ let initialState = {
     { id: 4, massage: 'hi' },
     { id: 5, massage: 'hi' },
   ] as Array<Massage>
-};
+}
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
 
   switch (action.type) {
     case SEND_MASSAGE:
       let getNewId = () => {
-        let massages = state.massages;
-        let lastMassage = massages[massages.length - 1];
+        let massages = state.massages
+        let lastMassage = massages[massages.length - 1]
         return lastMassage.id + 1
       };
-      let body = action.newMassageBody;
+      let body = action.newMassageBody
       return {
         ...state,
         massages: [...state.massages, { id: getNewId(), massage: body }],
       }
 
     default:
-      return state;
+      return state
   }
 }
+
+type ActionsType = SendMassageActionType
 
 type SendMassageActionType = {
   type: typeof SEND_MASSAGE
   newMassageBody: string
 }
 
-export const sendMassage = (newMassageBody: string): SendMassageActionType => ({ type: SEND_MASSAGE, newMassageBody });
+export const sendMassage = (newMassageBody: string): SendMassageActionType => ({ type: SEND_MASSAGE, newMassageBody })
 
-export default dialogsReducer;
+export default dialogsReducer

@@ -1,3 +1,6 @@
+import { Dispatch } from "redux"
+import { AppStateType } from "../Redux/redux-store"
+
 export type ContactsType = {
   github: string
   vk: string
@@ -21,11 +24,27 @@ export type ProfileType = {
   fullName: string
   contacts: ContactsType
   photos: PhotosType
-}
+} | null
 
 export type LinksType = {
   page: string
   link: string
+}
+
+export type PostType = {
+  id: number
+  title: string
+  data: string
+  category: string
+  text: string
+}
+
+export type WorkType = {
+  id: number
+  title: string
+  data: string
+  category: string
+  text: string
 }
 
 export type UserType = {

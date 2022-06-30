@@ -1,6 +1,6 @@
-import React, { ChangeEvent } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { ChangeEvent } from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 type PropsType = {
   status: string
@@ -49,7 +49,7 @@ const ProfileStatus: React.FC<PropsType> = ({ status, updateUserStatus, userId, 
           <span>{localStatus || '---------'}</span>
         </div>}
     </>
-  );
+  )
 }
 
-export default ProfileStatus;
+export default ProfileStatus
