@@ -1,27 +1,32 @@
-import React from 'react';
-import AddPostFormContainer from '../AddPost/AddPostFormContainer';
-import Post from './Post';
+import React from 'react'
+import { PostType } from '../../types/types'
+import AddPostForm from '../AddPost/AddPostFormContainer'
+import Post from './Post'
 
-const Blog = (props) => {
+type PropsType = {
+  posts: Array<PostType>
+}
+
+const Blog: React.FC<PropsType> = ({ posts }) => {
   return (
     <div className='Blog'>
       <main className="page">
         <div className="container">
           <h1 className="blog__title title">Blog</h1>
-          <AddPostFormContainer />
+          <AddPostForm />
           <div className="blog__items">
-            {props.posts.map(p => <Post
+            {posts.map(p => <Post
               title={p.title}
               data={p.data}
               category={p.category}
               text={p.text}
               key={p.id}
-            />)}
+              id={p.id} />)}
           </div>
         </div>
       </main>
     </div>
-  );
+  )
 }
 
-export default Blog;
+export default Blog

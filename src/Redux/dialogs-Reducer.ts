@@ -52,7 +52,7 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
 
 type ActionsType = SendMassageActionType
 
-type SendMassageActionType = {
+export type SendMassageActionType = {
   type: typeof SEND_MASSAGE
   newMassageBody: string
 }

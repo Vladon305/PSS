@@ -26,10 +26,10 @@ const RecentPosts: React.FC<PropsType> = ({ posts }) => {
       </div>
       <div className="recent-posts__items">
         <div className="recent-posts__column">
-          {lastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} key={p.id} />)}
+          {lastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} key={p.id} id={p.id} />)}
         </div>
         <div className="recent-posts__column">
-          {preLastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} key={p.id} />)}
+          {preLastElement.map(p => <Post title={p.title} data={p.data} category={p.category} text={p.text} key={p.id} id={p.id} />)}
         </div>
       </div>
     </section>

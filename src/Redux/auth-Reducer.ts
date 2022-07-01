@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk"
-import { authAPI } from "../API/API"
+import { authAPI, ResultCodes } from "../API/API"
 import { AppStateType } from "./redux-store"
 
 const SET_USER_DATA = 'auth/SET_USER_DATA'
@@ -61,7 +61,7 @@ export const setAuthUserProfile = (data: any): SetAuthUserProfile => ({ type: SE
 
 export const getAuthUser = (): ThunkType => async (dispatch) => {
   const data = await authAPI.getAuthUser();
-  if (data.resultCode === 0) {
+  if (data.resultCode === ResultCodes.Success) {
     let { id, login, email } = data.data
     dispatch(setAuthUserData(id, login, email, true))
   }
@@ -69,14 +69,14 @@ export const getAuthUser = (): ThunkType => async (dispatch) => {
 
 export const login = (email: string, password: string, rememberMe: boolean): ThunkType => async (dispatch) => {
   const data = await authAPI.login(email, password, rememberMe)
-  if (data.resultCode === 0) {
+  if (data.resultCode === ResultCodes.Success) {
     dispatch(getAuthUser())
   }
 }
 
 export const logout = (): ThunkType => async (dispatch) => {
   const data = await authAPI.logout()
-  if (data.resultCode === 0) {
+  if (data.resultCode === ResultCodes.Success) {
     dispatch(getAuthUser())
     dispatch(setAuthUserData(null, null, null, false))
   }
