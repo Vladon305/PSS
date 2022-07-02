@@ -1,6 +1,7 @@
 .AddPostForm {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
   flex-wrap: wrap;
   margin: 0px 0px 30px 0px;
   input {

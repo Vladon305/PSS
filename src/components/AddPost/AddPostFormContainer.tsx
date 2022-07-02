@@ -26,41 +26,32 @@ const AddPostForm: React.FC<MapDispatchType> = ({ addPost }) => {
     <div className='AddPostForm'>
       <div>
         <input {...register('title', {
-          pattern: {
-            message: 'Long title',
-            value: /.{0,10}/
-          }
+          maxLength: 20
         })}
           type="text"
           placeholder={'Add title'} />
         {errors?.title && (
-          <div>{errors.title.message}</div>
+          <div style={{ color: 'red' }}>Lang title!</div>
         )}
       </div>
       <div>
         <input {...register('category', {
-          pattern: {
-            message: 'Long category',
-            value: /.{0,20}/
-          }
+          maxLength: 20
         })}
           type="text"
           placeholder={'Add category'} />
         {errors?.category && (
-          <div>{errors.category.message}</div>
+          <div style={{ color: 'red' }}>Lang category!</div>
         )}
       </div>
       <div>
         <input {...register('text', {
-          pattern: {
-            message: 'Long text',
-            value: /.{0,60}/
-          }
+          maxLength: 100
         })}
           type="text"
           placeholder={'Add text'} />
         {errors?.text && (
-          <div>{errors.text.message}</div>
+          <div style={{ color: 'red' }}>Lang text!</div>
         )}
       </div>
       <button>Add post</button>

@@ -62,9 +62,14 @@
     // }
     li {
       margin: 0px 20px;
-      // @media (max-width: $md3) {
-      //   margin: 40px 0;
-      // }
+      button {
+        background-color: rgb(184 204 207);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 25px;
+        padding: 5px 10px;
+      }
     }
   }
 
