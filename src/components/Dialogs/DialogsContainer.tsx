@@ -1,6 +1,6 @@
 import Dialogs from './Dialogs'
 import { connect } from "react-redux"
-import { sendMassage, SendMassageActionType } from '../../Redux/dialogs-Reducer'
+import { actions, SendMassageActionType } from '../../Redux/dialogs-Reducer'
 import { compose } from 'redux'
 import { withAuthRedirect } from '../../HOCs/withAuthRedirect'
 import { AppStateType } from '../../Redux/redux-store'
@@ -20,4 +20,4 @@ const mapStateToProps = (state: AppStateType) => {
 
 export default compose(
   withAuthRedirect,
-  connect(mapStateToProps, { sendMassage }))(Dialogs)
+  connect(mapStateToProps, { sendMassage: actions.sendMassage }))(Dialogs)

@@ -1,8 +1,6 @@
 import Friends from './Friends'
 import { connect } from 'react-redux'
-import {
-  acceptFollow, setPage, acceptUnfollow, getUsers, follow, unfollow
-} from '../../Redux/friends-Reducer'
+import { actions, getUsers } from '../../Redux/friends-Reducer'
 import React, { useEffect } from 'react'
 import { compose } from 'redux'
 import { withAuthRedirect } from '../../HOCs/withAuthRedirect'
@@ -32,7 +30,7 @@ const FriendsContainer: React.FC<PropsType> = ({ getUsers, page, setPage, pageSi
 
   const onPostChanged = (pageNumber: number) => {
     getUsers(pageNumber, pageSize)
-  };
+  }
 
   return <Friends
     onPostChanged={onPostChanged}
@@ -58,6 +56,6 @@ const mapStateToProps = (state: AppStateType) => {
 export default compose(
   withAuthRedirect,
   connect(mapStateToProps, {
-    acceptFollow, acceptUnfollow, setPage, getUsers, follow, unfollow
+    acceptFollow: actions.acceptFollow, acceptUnfollow: actions.acceptUnfollow, setPage: actions.setPage, getUsers,
   }))
   (FriendsContainer)

@@ -1,4 +1,5 @@
 import { PostType } from "../types/types"
+import { InferActionsTypes } from "./redux-store"
 
 const ADD_POST = 'posts/ADD-POST'
 
@@ -25,8 +26,6 @@ let initialState = {
     text: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Veli officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
   } as PostType]
 }
-
-type InitialStateType = typeof initialState
 
 
 const postsReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -56,16 +55,12 @@ const postsReducer = (state = initialState, action: ActionsType): InitialStateTy
   }
 }
 
-type ActionsType = AddPostActionType
-
-type AddPostActionType = {
-  type: typeof ADD_POST
-  title: string
-  category: string
-  text: string
+export const actions = {
+  addPost: (title: string, category: string, text: string) => ({ type: ADD_POST, title, category, text } as const)
 }
 
-export const addPost = (title: string, category: string, text: string): AddPostActionType => ({ type: ADD_POST, title, category, text })
+type ActionsType = InferActionsTypes<typeof actions>
 
+type InitialStateType = typeof initialState
 
 export default postsReducer

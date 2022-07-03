@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { addPost } from '../../Redux/posts-Reducer'
+import { actions } from '../../Redux/posts-Reducer'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 type MapDispatchType = {
@@ -59,4 +59,4 @@ const AddPostForm: React.FC<MapDispatchType> = ({ addPost }) => {
   </form>
 }
 
-export default connect(null, { addPost })(AddPostForm)
+export default connect(null, { addPost: actions.addPost })(AddPostForm)

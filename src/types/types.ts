@@ -54,3 +54,13 @@ export type UserType = {
   photos: PhotosType
   followed: boolean
 }
+
+export type Dialog = {
+  id: number
+  name: string
+}
+
+export type Massage = {
+  id: number
+  massage: string
+}

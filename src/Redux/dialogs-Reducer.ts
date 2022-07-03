@@ -1,17 +1,7 @@
+import { Dialog, Massage } from "../types/types"
+import { InferActionsTypes } from "./redux-store"
+
 const SEND_MASSAGE = 'dialogs/SEND_MASSAGE'
-
-export type InitialStateType = typeof initialState
-
-type Dialog = {
-  id: number
-  name: string
-}
-
-type Massage = {
-  id: number
-  massage: string
-}
-
 
 let initialState = {
   dialogs: [
@@ -50,13 +40,12 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
   }
 }
 
-type ActionsType = SendMassageActionType
-
-export type SendMassageActionType = {
-  type: typeof SEND_MASSAGE
-  newMassageBody: string
+export const actions = {
+  sendMassage: (newMassageBody: string) => ({ type: SEND_MASSAGE, newMassageBody })
 }
 
-export const sendMassage = (newMassageBody: string): SendMassageActionType => ({ type: SEND_MASSAGE, newMassageBody })
+export type InitialStateType = typeof initialState
+
+type ActionsType = InferActionsTypes<typeof actions>
 
 export default dialogsReducer

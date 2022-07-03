@@ -1,11 +1,9 @@
-import { ThunkAction } from "redux-thunk"
-import { authAPI, ResultCodes } from "../API/API"
-import { AppStateType } from "./redux-store"
+import { ResultCodes } from "../API/API"
+import { authAPI } from "../API/authAPI"
+import { InferActionsTypes, InferThunkType } from "./redux-store"
 
 const SET_USER_DATA = 'auth/SET_USER_DATA'
 const SET_AUTH_USER_PROFILE = 'auth/SET_AUTH_USER_PROFILE'
-
-export type InitialStateType = typeof initialState
 
 let initialState = {
   userId: null as number | null,
@@ -33,37 +31,19 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
   }
 }
 
-type ActionsType = SetAuthUserDataActionType | SetAuthUserProfile
+export const actions = {
+  setAuthUserData: (
+    userId: number | null, login: string | null, email: string | null, isAuth: boolean) =>
+    ({ type: SET_USER_DATA, payload: { userId, login, email, isAuth } } as const),
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
-
-type SetAuthUserDataActionPayloadType = {
-  userId: number | null
-  login: string | null
-  email: string | null
-  isAuth: boolean
+  setAuthUserProfile: (data: any) => ({ type: SET_AUTH_USER_PROFILE, data } as const)
 }
-
-type SetAuthUserDataActionType = {
-  type: typeof SET_USER_DATA, payload: SetAuthUserDataActionPayloadType
-}
-
-export const setAuthUserData = (
-  userId: number | null, login: string | null, email: string | null, isAuth: boolean): SetAuthUserDataActionType =>
-  ({ type: SET_USER_DATA, payload: { userId, login, email, isAuth } })
-
-type SetAuthUserProfile = {
-  type: typeof SET_AUTH_USER_PROFILE
-  data: any
-}
-
-export const setAuthUserProfile = (data: any): SetAuthUserProfile => ({ type: SET_AUTH_USER_PROFILE, data })
 
 export const getAuthUser = (): ThunkType => async (dispatch) => {
   const data = await authAPI.getAuthUser();
   if (data.resultCode === ResultCodes.Success) {
     let { id, login, email } = data.data
-    dispatch(setAuthUserData(id, login, email, true))
+    dispatch(actions.setAuthUserData(id, login, email, true))
   }
 }
 
@@ -78,8 +58,14 @@ export const logout = (): ThunkType => async (dispatch) => {
   const data = await authAPI.logout()
   if (data.resultCode === ResultCodes.Success) {
     dispatch(getAuthUser())
-    dispatch(setAuthUserData(null, null, null, false))
+    dispatch(actions.setAuthUserData(null, null, null, false))
   }
 }
+
+export type InitialStateType = typeof initialState
+
+type ActionsTypes = InferActionsTypes<typeof actions>
+
+type ThunkType = InferThunkType<ActionsTypes>
 
 export default authReducer
