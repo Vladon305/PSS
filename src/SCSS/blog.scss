@@ -13,7 +13,7 @@
     display: inline-block;
     font-size: 30px;
     font-weight: 500;
-    line-height: 44 / 30 * 100%;
+    line-height: calc(44 / 30) * 100%;
     margin: 0px 0px 10px 0px;
     color: #21243d;
     @media (min-width: $md2) {

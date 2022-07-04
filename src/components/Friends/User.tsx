@@ -1,8 +1,19 @@
-import React from 'react';
-import userPhoto from '../../assets/images/user.webp';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import userPhoto from '../../assets/images/user.webp'
+import { NavLink } from 'react-router-dom'
 
-const User = ({ id, photos, followed, follow, unfollow, fullName, status, followingInProgress }) => {
+type PropsType = {
+  id: number
+  photos: string | undefined
+  followed: boolean
+  fullName: string
+  status: string
+  followingInProgress: number[]
+  follow: (userId: number) => void
+  unfollow: (userId: number) => void
+}
+
+const User: React.FC<PropsType> = ({ id, photos, followed, follow, unfollow, fullName, status, followingInProgress }) => {
   return (
     <div className='user'>
       <div className='user-inner'>
@@ -30,7 +41,7 @@ const User = ({ id, photos, followed, follow, unfollow, fullName, status, follow
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default User;
+export default User

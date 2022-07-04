@@ -20,7 +20,7 @@ let initialState = {
   ] as Array<Massage>
 }
 
-const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
   switch (action.type) {
     case SEND_MASSAGE:
@@ -46,6 +46,6 @@ export const actions = {
 
 export type InitialStateType = typeof initialState
 
-type ActionsType = InferActionsTypes<typeof actions>
+export type ActionsTypes = InferActionsTypes<typeof actions>
 
 export default dialogsReducer

@@ -1,6 +1,6 @@
 .title {
   font-size: 44px;
-  line-height: 60 / 44 * 100%;
+  line-height: calc(60 / 44) * 100%;
   font-weight: 700;
   @media (max-width: $md3) {
     font-size: 32px;
@@ -9,7 +9,7 @@
 .text {
   font-weight: 400;
   font-size: 16px;
-  line-height: 24 / 16 * 100%;
+  line-height: calc(24 / 16) * 100%;
 }
 .title-posts {
   font-weight: 400;

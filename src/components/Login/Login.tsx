@@ -12,17 +12,13 @@ type MapDispatchType = {
   login: (email: string, password: string, rememberMe: boolean) => void
 }
 
-type OwnPropsType = {
-  condition: () => void
-}
-
 type LoginFormValuesType = {
   email: string
   password: string
   rememberMe: boolean
 }
 
-const Login: React.FC<MapStateType & MapDispatchType & OwnPropsType> = ({ login, userId, isAuth, condition }) => {
+const Login: React.FC<MapStateType & MapDispatchType> = ({ login, userId, isAuth }) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValuesType>({
     mode: 'onChange'
@@ -30,7 +26,6 @@ const Login: React.FC<MapStateType & MapDispatchType & OwnPropsType> = ({ login,
 
   const onSubmit: SubmitHandler<LoginFormValuesType> = ({ email, password, rememberMe }) => {
     login(email, password, rememberMe)
-    // condition()
   }
 
   if (isAuth) {

@@ -1,5 +1,5 @@
-import React from 'react';
-const Footer = () => {
+import React from 'react'
+const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="container">
@@ -14,6 +14,6 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
+  )
 }
-export default Footer;
+export default Footer

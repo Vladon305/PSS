@@ -4,7 +4,7 @@
   height: 47px;
   font-weight: 500;
   font-size: 20px;
-  line-height: 29 / 20 * 100%;
+  line-height: calc(29 / 20) * 100%;
   color: #fff;
   display: inline-flex;
   padding: 0px 20px;

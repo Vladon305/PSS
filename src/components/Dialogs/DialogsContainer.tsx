@@ -1,15 +1,9 @@
 import Dialogs from './Dialogs'
 import { connect } from "react-redux"
-import { actions, SendMassageActionType } from '../../Redux/dialogs-Reducer'
+import { actions } from '../../Redux/dialogs-Reducer'
 import { compose } from 'redux'
 import { withAuthRedirect } from '../../HOCs/withAuthRedirect'
 import { AppStateType } from '../../Redux/redux-store'
-
-export type MapStateType = ReturnType<typeof mapStateToProps>
-
-export type MapDispatchType = {
-  sendMassage: (newMassageBody: string) => SendMassageActionType
-}
 
 const mapStateToProps = (state: AppStateType) => {
   return {
@@ -20,4 +14,4 @@ const mapStateToProps = (state: AppStateType) => {
 
 export default compose(
   withAuthRedirect,
-  connect(mapStateToProps, { sendMassage: actions.sendMassage }))(Dialogs)
+  connect(mapStateToProps, { sendMassage: actions.sendMassage }))(Dialogs) as React.ComponentType

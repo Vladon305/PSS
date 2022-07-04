@@ -97,7 +97,12 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": [
-    "src"
+    "src",
+    "src/components",
+    "src/custom.d.ts",
+    "src/Router.tsx", // my main entry point
+    "src/global.d.ts", // global stuff
+    "src/react-app-env.d.ts" // react global stuff
   ],
   "exclude": [
     "node_modules"

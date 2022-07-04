@@ -5,13 +5,13 @@ import { InferActionsTypes, InferThunkType } from "./redux-store"
 const SET_USER_DATA = 'auth/SET_USER_DATA'
 const SET_AUTH_USER_PROFILE = 'auth/SET_AUTH_USER_PROFILE'
 
-let initialState = {
+const initialState = {
   userId: null as number | null,
   login: null as string | null,
   email: null as string | null,
   isAuth: false,
   profile: null as any
-};
+}
 
 const authReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {

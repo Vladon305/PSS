@@ -3,6 +3,6 @@ export const updateObjectsInArray = (items, itemId, objPropName, newObjProps) =>
     if (u[objPropName] === itemId) {
       return { ...u, ...newObjProps }
     }
-    return u;
+    return u
   })
 }

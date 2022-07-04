@@ -1,10 +1,17 @@
-import React, { useEffect } from 'react';
-import userPhoto from '../../assets/images/user.webp';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import userPhoto from '../../assets/images/user.webp'
+import { NavLink } from 'react-router-dom'
 
-const Header = ({ userId, isAuth, login, ava, logout, condition }) => {
+export type PropsType = {
+  isAuth: boolean
+  login: string | null
+  userId: number | null
+  ava: string | undefined
+  logout: () => void
+}
+
+const Header: React.FC<PropsType> = ({ userId, isAuth, login, ava, logout }) => {
   useEffect(() => {
-    condition()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuth])
   return (
@@ -14,7 +21,7 @@ const Header = ({ userId, isAuth, login, ava, logout, condition }) => {
           <div className="header__menu menu">
             <nav className="menu__body">
               <ul className="menu__list">
-                <li>{isAuth & ava
+                <li>{isAuth && ava
                   ? <NavLink to={`/Profile/${userId}`} className="menu__link">
                     <div className='menu__ava'><img src={ava} alt="ava" /></div>
                   </NavLink>
@@ -33,7 +40,7 @@ const Header = ({ userId, isAuth, login, ava, logout, condition }) => {
       </div>
     </header>
 
-  );
+  )
 }
 
-export default Header;
+export default Header

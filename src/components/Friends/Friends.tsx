@@ -40,7 +40,7 @@ const Friends: React.FC<PropsType> = ({
             followed={u.followed}
             id={u.id}
             key={u.id}
-            photos={u.photos.small}
+            photos={u.photos.large}
             fullName={u.name}
             status={u.status}
             follow={follow}
@@ -48,7 +48,6 @@ const Friends: React.FC<PropsType> = ({
             followingInProgress={followingInProgress}
           />)
         }
-
       </div>
     </div>
   )

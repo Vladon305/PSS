@@ -1,14 +1,18 @@
 import React from 'react'
 import DialogsItem from './DialogItem'
 import Massage from './Massage'
-import { MapDispatchType, MapStateType } from './DialogsContainer'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { InitialStateType } from '../../Redux/dialogs-Reducer'
 
 type FormValuesType = {
   newMassageBody: string
 }
 
-const Dialogs: React.FC<MapStateType & MapDispatchType> = ({ dialogs, massages, sendMassage }) => {
+type PropsType = {
+  sendMassage: (newMassageBody: string) => void
+}
+
+const Dialogs: React.FC<InitialStateType & PropsType> = ({ dialogs, massages, sendMassage }) => {
 
   const { register, handleSubmit } = useForm<FormValuesType>({
     mode: 'onChange'
